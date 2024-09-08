@@ -1,10 +1,12 @@
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
+div {
+  background-color: #faddfb;
+  display: block;
+  unicode-bidi: isolate;
 }
-ul li {
-  flex: 1 0;
-  justify-content: center;
+div img {
+  margin-right: 30%;
+}
+div input {
+  margin: 5%;
+  width: 300px;
 }/*# sourceMappingURL=menu.component.css.map */

@@ -1,10 +1,13 @@
-ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    li{
-        flex: 1 0;
-        justify-content: center;
+div{
+    background-color: #faddfb;
+    display: block;
+    unicode-bidi: isolate;
+    
+    img{
+        margin-right: 30%;
+    }
+    input{
+        margin: 5%;
+        width: 300px;
     }
 }
