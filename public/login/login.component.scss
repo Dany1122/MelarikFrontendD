@@ -1,0 +1,146 @@
+@import '../../src/variables.scss';
+@media ( min-width: $mobile ) {
+  .oa_container_page_login {
+    background-color: #fafafa;
+    .oa_login_section{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100vh;
+      .oa_main_login{
+        width: 100%;
+        overflow: hidden;
+        .oa_container_login{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          .oa_screen_login{
+            background: linear-gradient(90deg, rgb(199, 155, 235), rgb(199, 155, 235));
+            position: relative;
+            height: 600px;
+            width: 360px;
+            box-shadow: 0 0 24px #8c10f1;
+            .oa_screen_content_login{
+              z-index: 1;
+              position: relative;
+              height: 100%;
+              .oa_login_form{
+                width: 320px;
+                padding: 30px;
+                padding-top: 90px;
+                .oa_img_form{
+                  img{
+                    width: 70px;
+                  }
+                }
+                .oa_title_form_login{
+                  h1{
+                    color: black;
+                  }
+                  p{
+                    color: grey;
+                  }
+                }
+                .oa_login_field_form{
+                  padding: 20px 0;
+                  position: relative;
+                  .oa_login_icon{
+                    position: absolute;
+                    top: 30px;
+                    color: rgb(255, 60, 180);
+                  }
+                  input::placeholder{
+                    color: grey;
+                    font-weight: 100;
+                  }
+                  .oa_login_input_form{
+                    border: none;
+                    border-bottom: 2px solid #d1d1d1;
+                    background: none;
+                    padding: 10px;
+                    padding-left:24px;
+                    font-weight: 700;
+                    width: 75%;
+                    transition: .2s;
+                    color: grey;
+                    &:hover{
+                      border-bottom: 2px solid pink;
+                    }
+                    &:focus{
+                      border-bottom: 2px solid pink;
+                      outline: none;
+                    }
+                    &:active{
+                      border-bottom: 2px solid pink;
+                    }
+                  }
+                }
+                .oa_button_login_form{
+                  // width: 100%;
+                  padding: 10px;
+                  background: #4cadb4;
+                  border: none;
+                  border-radius: 32px;
+                  color: white;
+                  font-weight: 700;
+                  cursor: pointer;
+                  transition: .2s;
+                  &:hover{
+                    background: #b665e1;
+                  }
+                  &:active{
+                    background: #b665e1;
+                  }
+                }
+              }
+            }
+          }
+          .oa_screen_background{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            .oa_screen_background_shape{
+              transform: rotate(45deg);
+              position: absolute;
+            }
+            .oa_screen_background_shape1{
+              height: 520px;
+              width: 520px;
+              background: #fafafa;
+              top: -50px;
+              right: 120px;
+              border-radius: 0 72px 0 0;
+            }
+            .oa_screen_background_shape2{
+              height: 220px;
+              width: 220px;
+              background: pink;
+              top: -172px;
+              border-radius: 32px;
+            }
+            .oa_screen_background_shape3{
+              height: 540px;
+              width: 190px;
+              background: linear-gradient(90deg, #7acaff, #00a1d6);
+              border-radius: 32px;
+            }
+            .oa_screen_background_shape4{
+              height: 400px;
+              width: 200px;
+              background: pink;
+              top: 420px;
+              right: 50px;
+              border-radius: 60px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
