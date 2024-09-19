@@ -1,0 +1,13 @@
+@import '../../../variables.scss';
+
+@media ( min-width: $mobile ) {
+  .card{
+    margin: 0 auto;
+    width: 100%;
+    max-width: $maxWidthContainer;
+  }
+}
+
+@media ( min-width: $tablet ) {}
+
+@media ( min-width: $desktop ) {}

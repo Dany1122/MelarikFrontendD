@@ -1,0 +1,26 @@
+@import '../../../variables.scss';
+
+@media ( min-width: $mobile ) {
+  .ml_container_footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    .ml_container_img{
+      margin-right: 50px;
+      img{
+        width: 50px;
+      }
+    }
+    .ml_container_text{
+      p{
+        color: $colorText;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+@media ( min-width: $tablet ) {}
+
+@media ( min-width: $desktop ) {}

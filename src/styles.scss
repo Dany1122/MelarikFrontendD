@@ -1,6 +1,7 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
+@import './variables.scss';
 
 .app{
   display: flex;
@@ -13,4 +14,23 @@ body{
 }
 main{
   flex: 1;
+}
+
+.p-menubar{
+  background-color: $colorPrimary;
+}
+.p-menubar-root-list{
+  background: $colorPrimary;
+  ul{
+    background: $colorPrimary;
+    li{
+      background: $colorPrimary;
+    }
+  }
+}
+
+.p-element{
+  max-width: initial !important;
+  margin-top: 0 !important;
+  color: $colorText;
 }

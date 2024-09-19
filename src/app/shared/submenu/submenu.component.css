@@ -1,17 +1,24 @@
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
+@media (min-width: 0px) {
+  ul {
+    display: none;
+  }
 }
-ul li {
-  flex: 1 0 auto;
-}
-ul li a {
-  color: black;
-  padding: 8px;
-  text-decoration: none;
-}
-ul li a:hover {
-  background-color: #faddfb;
+@media (min-width: 768px) {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  ul li {
+    flex: 1 0 auto;
+  }
+  ul li a {
+    color: black;
+    padding: 8px;
+    text-decoration: none;
+  }
+  ul li a:hover {
+    background-color: #faddfb;
+  }
 }/*# sourceMappingURL=submenu.component.css.map */

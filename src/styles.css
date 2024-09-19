@@ -14,4 +14,24 @@ body {
 
 main {
   flex: 1;
+}
+
+.p-menubar {
+  background-color: #e095d4;
+}
+
+.p-menubar-root-list {
+  background: #e095d4;
+}
+.p-menubar-root-list ul {
+  background: #e095d4;
+}
+.p-menubar-root-list ul li {
+  background: #e095d4;
+}
+
+.p-element {
+  max-width: initial !important;
+  margin-top: 0 !important;
+  color: #3026a1;
 }/*# sourceMappingURL=styles.css.map */

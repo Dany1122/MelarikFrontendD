@@ -1,13 +1,61 @@
-div{
-    background-color: #faddfb;
-    display: block;
-    unicode-bidi: isolate;
+@import '../../../variables.scss';
+
+.ml_img_logo_menu{
+  width: 50px;
+}
+.ml_container_search_avatar_menu{
+  display: flex;
+  align-items: center;
+  input{
+      right: 5%;
+  }
+}
+.p-menubar-end{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+@media ( min-width: $mobile ) {
+  .ml_menu_image{
+      background-color: #faddfb;
+      display: block;
+      unicode-bidi: isolate;
+      display: flex;
+      align-items: center;
+      height: 100px;
+      
+      img{
+          // margin-right: 30%;
+          width: 80px;
+      }
+      input{
+          margin: 5%;
+          width: 300px;
+          border: none;
+          border-radius: 6px;
+          padding: 5px;
+      }
+  }
+
+}
+
+@media ( min-width: $tablet ) {
+  .ml_menu_image{
     
     img{
         margin-right: 30%;
     }
     input{
-        margin: 5%;
-        width: 300px;
+        
     }
+}
+
+}
+
+@media ( min-width: $desktop ) {
+
+
 }

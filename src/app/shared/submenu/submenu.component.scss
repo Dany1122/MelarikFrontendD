@@ -1,17 +1,31 @@
-ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    li{
-        flex: 1 0 auto;
-        a{
-            color: black;
-            padding: 8px;
-            text-decoration: none;
-        }
-        a:hover{
-            background-color: #faddfb;
-        }
-    }
+@import '../../../variables.scss';
+
+@media ( min-width: $mobile ) {
+  ul{
+    display: none;
+  }
+  
+}
+@media ( min-width: $tablet ) {
+  ul{
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      li{
+          flex: 1 0 auto;
+          a{
+              color: black;
+              padding: 8px;
+              text-decoration: none;
+          }
+          a:hover{
+              background-color: #faddfb;
+          }
+      }
+  }
+  
+}
+@media ( min-width: $desktop ) {
+
 }

@@ -1,3 +1,6 @@
-:host {
-  display: block;
-}
+@media (min-width: 0px) {
+  .app .ml_footer_main {
+    background: #e095d4;
+    color: #3026a1;
+  }
+}/*# sourceMappingURL=dashboard.component.css.map */

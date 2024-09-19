@@ -1,0 +1,14 @@
+@import '../../variables.scss';
+
+@media ( min-width: $mobile ) {
+  .app{
+    .ml_footer_main{
+      background: $colorPrimary;
+      color: $colorText;
+    }
+  }
+}
+
+@media ( min-width: $tablet ) {}
+
+@media ( min-width: $desktop ) {}

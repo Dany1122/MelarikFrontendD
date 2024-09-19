@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guard/auth.guard';
+import { loginGuard } from './guard/login.guard';
 
 const dashboardRoutes: Routes = [
   {
@@ -19,6 +20,7 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () => import('../../public/login/login.component').then(m => m.LoginComponent),
+    canMatch: [loginGuard]
   },
   {
     path: 'home',
