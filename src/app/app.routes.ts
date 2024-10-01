@@ -4,13 +4,17 @@ import { loginGuard } from './guard/login.guard';
 
 const dashboardRoutes: Routes = [
   {
-  path: '',
-  loadComponent: () => import('./dashboard/pages/home/home.component').then(m => m.HomeComponent),
+    path: '',
+    loadComponent: () => import('./dashboard/pages/home/home.component').then(m => m.HomeComponent),
   },
   {
     path : 'history',
     loadComponent: () => import('./dashboard/pages/history/history.component').then(m => m.HistoryComponent),
   },
+  {
+    path : 'products',
+    loadComponent: () => import('./dashboard/pages/products/products.component').then(m => m.ProductsComponent),
+  }
 
 ];
 
