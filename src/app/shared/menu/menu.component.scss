@@ -26,7 +26,7 @@
       display: flex;
       align-items: center;
       height: 100px;
-      
+
       img{
           // margin-right: 30%;
           width: 80px;
@@ -39,19 +39,42 @@
           padding: 5px;
       }
   }
+  .ml_buy_car{
+    position: fixed;
+    background: aliceblue;
+    margin-top: 0.5em;
+    left: 0;
+    overflow-x: hidden;
+    height: 85%;
+    min-height: 50%;
+    width: 100%;
+}
+  .hiden{
+    display: none;
+  }
+  .ml_container_cart_products{
+    display: flex;
+    padding-left: 33px;
+    padding-right: 10px;
+  }
 
 }
 
 @media ( min-width: $tablet ) {
   .ml_menu_image{
-    
+
     img{
         margin-right: 30%;
     }
     input{
-        
+
     }
-}
+  }
+  .ml_buy_car{
+    margin-top: 1.5em;
+    left: inherit;
+    margin-left: -24em;
+  }
 
 }
 

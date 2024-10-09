@@ -3,4 +3,9 @@
     background: #e095d4;
     color: #3026a1;
   }
+  .app .ml_app_header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
 }/*# sourceMappingURL=dashboard.component.css.map */

@@ -32,11 +32,12 @@ export class LoginComponent {
     this.AuthService.login(body).subscribe((res) => {
       if (res.success) {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('uid', res.uid);
         this.router.navigate(['/home']);
       }
     },
     (err) => {
-      
+
       alert('Invalid credentials');
     }
   );

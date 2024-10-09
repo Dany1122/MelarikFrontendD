@@ -36,52 +36,32 @@
     border-radius: 6px;
     padding: 5px;
   }
+  .ml_buy_car {
+    position: fixed;
+    background: aliceblue;
+    margin-top: 0.5em;
+    left: 0;
+    overflow-x: hidden;
+    height: 85%;
+    min-height: 50%;
+    width: 100%;
+  }
+  .hiden {
+    display: none;
+  }
+  .ml_container_cart_products {
+    display: flex;
+    padding-left: 33px;
+    padding-right: 10px;
+  }
 }
 @media (min-width: 768px) {
   .ml_menu_image img {
     margin-right: 30%;
   }
+  .ml_buy_car {
+    margin-top: 1.5em;
+    left: inherit;
+    margin-left: -24em;
+  }
 }/*# sourceMappingURL=menu.component.css.map */
-
-.carrito{
-  display: flex;
-  justify-content: flex-end;
-  font-size: 3rem;
-  cursor: pointer;
-}
-.nav-car{
-  display: none;
-}
-.carrito nav button{
-  display: none;
-}
-.nav-car li{
-  list-style: none;
-  padding: 1rem;
-  font-weight: bold;
-}
-.carrito nav i:hover > .buy-car{
-  width: 400px;
-  height: 400px;
-  position: absolute;
-  right: 0;
-  background-color: #faddfb;
-}
-.carrito nav i:hover .nav-car{
-  font-size: 10px;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 10px 0 10px;
-  border-bottom: solid thin #faddfb;
-}
-
-.carrito nav i:hover .buy-car > button{
-  display: block;
-  width: 90%;
-  padding: 1rem;
-  margin: 10px auto;
-  background-color: transparent;
-  border: solid thin #faddfb;
-  color: #faddfb;
-  cursor: pointer;
-}

@@ -1,21 +1,24 @@
 <!--{{ products | json }}-->
 
 <div class="conteiner">
-    <nav></nav>
     <h1>Productos</h1>
-    @for (p of products; track p.id) {
-        <div class="grid">
-            <div class="items">
-              <img src={{p.url_image}} alt="Maquillaje">
-              <div class="info">
-                <h3>{{p.name_product}}</h3>
-                <p>{{p.description}}</p>
-                <div class="precio">
-                  <p>${{p.price}}</p>
+    <div class="ml_container_products">
+      @for (product of products; track product.id) {
+          <div class="grid">
+              <div class="items">
+                <img src={{product.url_image}} alt="Maquillaje">
+                <div class="info">
+                  <h3>{{product.name_product}}</h3>
+                  <p>{{product.description | pipeTruncate }}</p>
+                  <div class="precio">
+                    <p>${{product.price}}</p>
+                  </div>
+                  <input type="number" class="ml_input_products" [(ngModel)]="product.quantity" >
+                  <button (click)="addToCart(product)" >Agregar al carrito</button>
                 </div>
-                <button>Agregar al carrito</button>
               </div>
             </div>
-          </div>
-      }
+        }
+
+    </div>
   </div>

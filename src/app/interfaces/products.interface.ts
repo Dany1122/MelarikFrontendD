@@ -14,5 +14,6 @@ export interface Product {
   category_id:  number;
   createdAt:    Date;
   updatedAt:    Date;
+  quantity:     number;
 }
 

@@ -8,6 +8,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { RippleModule } from 'primeng/ripple';
 import { CategoriesService } from '../../services/categories.service'
 import { Router } from '@angular/router';
+import { CartService } from '../../services/cart.service';
+import { TruncatePipe } from '../../pipe/truncate.pipe';
 
 @Component({
   selector: 'app-menu',
@@ -19,6 +21,7 @@ import { Router } from '@angular/router';
     AvatarModule,
     InputTextModule,
     RippleModule,
+    TruncatePipe
   ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css',
@@ -27,10 +30,12 @@ export class MenuComponent implements OnInit {
   image = 'assets/rosa.png';
 
   items : MenuItem[] | undefined;
+  hideCartPreview : boolean = true;
 
   constructor(
     private categoriesService : CategoriesService,
-    private router : Router
+    private router : Router,
+    private CartService : CartService
   ){}
 
   ngOnInit() {
@@ -103,10 +108,20 @@ onMenuItemClick(item: any) {
     console.log('id_category', item.category_id);
     this.router.navigateByUrl(`/home/products?category=${item.category_id}`);
   }
+}
 
+handleMenuCart(e: Event) {
 
+e.preventDefault();
+  this.hideCartPreview = !this.hideCartPreview;
+}
 
+get countProducts() {
+  return this.CartService.cartInfo.cart.totalProducts;
+}
 
+get productsCart() {
+  return this.CartService.cartInfo.cart.items;
 }
 
 
