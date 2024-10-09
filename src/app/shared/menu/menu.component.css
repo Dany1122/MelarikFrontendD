@@ -42,3 +42,46 @@
     margin-right: 30%;
   }
 }/*# sourceMappingURL=menu.component.css.map */
+
+.carrito{
+  display: flex;
+  justify-content: flex-end;
+  font-size: 3rem;
+  cursor: pointer;
+}
+.nav-car{
+  display: none;
+}
+.carrito nav button{
+  display: none;
+}
+.nav-car li{
+  list-style: none;
+  padding: 1rem;
+  font-weight: bold;
+}
+.carrito nav i:hover > .buy-car{
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  right: 0;
+  background-color: #faddfb;
+}
+.carrito nav i:hover .nav-car{
+  font-size: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px 0 10px;
+  border-bottom: solid thin #faddfb;
+}
+
+.carrito nav i:hover .buy-car > button{
+  display: block;
+  width: 90%;
+  padding: 1rem;
+  margin: 10px auto;
+  background-color: transparent;
+  border: solid thin #faddfb;
+  color: #faddfb;
+  cursor: pointer;
+}

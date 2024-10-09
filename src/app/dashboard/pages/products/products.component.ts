@@ -1,14 +1,15 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../../services/products.service';
 import { Product } from '../../../interfaces/products.interface';
 
+
 @Component({
   selector: 'app-products',
   standalone: true,
   imports: [
-    CommonModule,
+    CommonModule
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
