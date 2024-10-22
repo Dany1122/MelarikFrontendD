@@ -141,4 +141,19 @@
     right: 50px;
     border-radius: 60px;
   }
+  .modalRegister .ml_option_register {
+    display: flex;
+    justify-content: space-between;
+  }
+  .modalRegister .ml_selecte_fav {
+    position: absolute;
+  }
+  .modalRegister .ml_select_gender {
+    margin-top: 3.5em;
+    margin-bottom: 2.5em;
+  }
+  .modalRegister .ml_error {
+    color: red;
+    font-size: 0.8em;
+  }
 }/*# sourceMappingURL=login.component.css.map */

@@ -143,4 +143,21 @@
       }
     }
   }
+  .modalRegister{
+    .ml_option_register{
+      display: flex;
+      justify-content: space-between;
+    }
+    .ml_selecte_fav{
+      position: absolute;
+    }
+    .ml_select_gender{
+      margin-top: 3.5em;
+      margin-bottom: 2.5em;
+    }
+    .ml_error{
+      color: red;
+      font-size: 0.8em;
+    }
+  }
 }

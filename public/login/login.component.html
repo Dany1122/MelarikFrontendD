@@ -27,6 +27,10 @@
                 <i class="pi pi-chevron-right"></i>
               </button>
             </form>
+            <button class="oa_button_login_form oa_login_submit_form">
+              <span class="oa_button_text_login_form" (click)="handleShowModal()" > Registrarse </span>
+              <i class="pi pi-chevron-right"></i>
+            </button>
           </div>
           <div class="oa_screen_background">
             <div class="oa_screen_background_shape oa_screen_background_shape4"></div>
@@ -39,3 +43,105 @@
     </div>
   </div>
 </div>
+
+<p-dialog class="modalRegister" header="Registrar usuario" [(visible)]="visible" [style]="{ width: '25rem' }">
+    <form (submit)="onSubmit()" >
+
+      <div class="ml_option_register">
+          <label for="username" class="font-semibold w-6rem">Nombre</label>
+          <input pInputText id="username" class="flex-auto" autocomplete="off"  [(ngModel)]="name" [ngModelOptions]="{standalone: true}" (input)="clearErrorMessage('name')"/>
+        </div>
+        <div class="ml_error" *ngIf="errorMessages.name">{{ errorMessages.name }}</div>
+
+      <div class="ml_option_register">
+        <label for="lastname" class="font-semibold w-6rem">Apellido</label>
+        <input pInputText id="lastname" class="flex-auto" autocomplete="off" [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}" (input)="clearErrorMessage('lastname')" />
+      </div>
+      <div class="ml_error" *ngIf="errorMessages.lastname">{{ errorMessages.lastname }}</div>
+
+      <div class="ml_option_register">
+        <span class="font-bold block mb-2">Telefono</span>
+        <p-inputMask
+            mask="(999) 999-9999"
+            [(ngModel)]="phone"
+            placeholder="(999) 999-9999"
+            [ngModelOptions]="{standalone: true}"
+            (onInput)="clearErrorMessage('phone')"
+        />
+      </div>
+
+      <div class="ml_error" *ngIf="errorMessages.phone">{{ errorMessages.phone }}</div>
+
+      <div class="ml_option_register">
+        <span class="font-bold block mb-2">Edad</span>
+        <p-inputMask
+            mask="99"
+            [(ngModel)]="age"
+            placeholder="Edad"
+            [ngModelOptions]="{standalone: true}"
+            (onInput)="clearErrorMessage('age')"
+        />
+      </div>
+
+      <div class="ml_error" *ngIf="errorMessages.age">{{ errorMessages.age }}</div>
+
+
+      <div class="ml_option_register">
+          <label for="email" class="font-semibold w-6rem">Email</label>
+          <input (input)="clearErrorMessage('email')" type="email" pInputText id="email" class="flex-auto" autocomplete="off"  [(ngModel)]="email" [ngModelOptions]="{standalone: true}"/>
+      </div>
+      <div class="ml_error" *ngIf="errorMessages.email">{{ errorMessages.email }}</div>
+
+      <div class="ml_option_register">
+        <label for="passwordNew" class="font-semibold w-6rem">Contraseña</label>
+        <input type="password" (input)="clearErrorMessage('passwordNew')" pInputText id="passwordNew" class="flex-auto" autocomplete="off" [(ngModel)]="passwordNew" [ngModelOptions]="{standalone: true}"  />
+    </div>
+    <div class="ml_error" *ngIf="errorMessages.passwordNew">{{ errorMessages.passwordNew }}</div>
+
+    <div class="ml_option_register">
+      <label for="address" class="font-semibold w-6rem">Domicilio</label>
+      <input (input)="clearErrorMessage('address')" pInputText id="address" class="flex-auto" autocomplete="off"  [(ngModel)]="address" [ngModelOptions]="{standalone: true}"/>
+  </div>
+
+  <div class="ml_error" *ngIf="errorMessages.address">{{ errorMessages.address }}</div>
+
+  <div class="ml_option_register">
+    <label for="billingAddress" class="font-semibold w-6rem">Domicilio de facturacion</label>
+    <input (input)="clearErrorMessage('billingAddress')" pInputText id="billingAddress" class="flex-auto" autocomplete="off" [(ngModel)]="billingAddress" [ngModelOptions]="{standalone: true}" />
+  </div>
+
+  <div class="ml_error" *ngIf="errorMessages.billingAddress">{{ errorMessages.billingAddress }}</div>
+
+  <div class="ml_option_register ml_selecte_fav">
+    <p-multiSelect
+        [options]="brands"
+        [(ngModel)]="selectedBrands"
+        optionLabel="name"
+        placeholder="Marcas de maquillaje favorito"
+        [ngModelOptions]="{standalone: true}"
+        />
+  </div>
+
+    <div class="ml_option_register ml_select_gender">
+      <p-selectButton
+          [options]="stateOptions"
+          [(ngModel)]="gender"
+          optionLabel="label"
+          optionValue="value"
+          [ngModelOptions]="{standalone: true}"
+          (onChange)="clearErrorMessage('gender')"
+           />
+  </div>
+
+  <div class="ml_error" *ngIf="errorMessages.gender">{{ errorMessages.gender }}</div>
+
+
+      <div class="flex justify-content-end gap-2">
+          <p-button label="Cancel" severity="secondary" (onClick)="visible = false" />
+          <p-button label="Save" (onClick)="onSubmit()"  />
+      </div>
+    </form>
+
+
+
+</p-dialog>
