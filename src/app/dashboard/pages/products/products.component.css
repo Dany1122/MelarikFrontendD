@@ -1,12 +1,45 @@
 @media (min-width: 0px) {
-  :host {
-    display: block;
+  .conteiner .ml_container_products .grid .items {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
-  * {
+  .conteiner .ml_container_products .grid .items .info {
+    width: 100%;
+    flex: 1;
+  }
+  .conteiner .ml_container_products .grid .items .ml_container_input .ml_input_products {
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    height: 2.5em;
+    color: grey;
+    margin-bottom: 1em;
+  }
+  .conteiner .ml_container_products .grid .items .ml_container_input .ml_input_products::-webkit-outer-spin-button, .conteiner .ml_container_products .grid .items .ml_container_input .ml_input_products::-webkit-inner-spin-button {
+    -webkit-appearance: none;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+  }
+  .conteiner .ml_container_products .grid .items .ml_container_input .ml_minus {
+    position: absolute;
+    color: gray;
+    cursor: pointer;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+  }
+  .conteiner .ml_container_products .grid .items .ml_container_input .ml_minus:hover {
+    color: pink;
+  }
+  .conteiner .ml_container_products .grid .items .ml_container_input .ml_plus {
+    position: absolute;
+    color: gray;
+    cursor: pointer;
+    margin-top: 0.5em;
+    margin-left: -1.5em;
+  }
+  .conteiner .ml_container_products .grid .items .ml_container_input .ml_plus:hover {
+    color: pink;
   }
   .conteiner nav {
     width: 100%;
@@ -24,13 +57,16 @@
   }
   .items {
     border: solid thin plum;
+    padding: 0.5em;
   }
   .items img {
     width: 100%;
     height: 170px;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
-  .info {
-    padding: 15px;
+  .info .input {
+    width: 5rem;
   }
   .info h3 {
     font-size: 1.2rem;
@@ -38,21 +74,20 @@
   .info p {
     font-size: 1rem;
   }
-  .info button {
-    padding: 1rem;
+  button {
     width: 100%;
-    height: 100;
+    padding: 0.5em;
     background-color: palevioletred;
     border: none;
     outline: none;
     color: beige;
     text-transform: uppercase;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 5px;
   }
-  .info button:hover {
+  button:hover {
     background-color: plum;
     transition: all 0.3s;
   }
@@ -62,6 +97,7 @@
     -moz-column-gap: 10px;
          column-gap: 10px;
     justify-content: center;
+    row-gap: 1em;
   }
 }
 @media (min-width: 768px) {

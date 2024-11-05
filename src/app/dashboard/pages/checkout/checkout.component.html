@@ -1,0 +1,98 @@
+<div class="ml_main_checkout">
+  <div class="ml_title_checkout">
+    <h3>Detalle de compra</h3>
+  </div>
+  <div class="ml_container_checkout">
+    <div class="ml_summary_cart">
+      <div class="ml_title_cart">
+        <h3>Resumen de carrito</h3>
+      </div>
+      <div class="ml_container_products">
+        <div class="ml_container_cart_products" *ngFor="let product of productsCart; let i = index">
+          <div class="oa_container_img">
+            <img src={{product.img}} alt="Maquillaje" width="80px" height="80px">
+          </div>
+          <div class="info">
+            <p>{{product.nameProduct}}</p>
+            <p>{{product.description | pipeTruncate }}</p>
+            <p>Cantidad : {{product.quantity}}</p>
+            <div class="precio">
+              <p>${{product.price * product.quantity }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+       <div class="ml_delivery_option">
+      <div class="ml_container_delivery_option">
+        <div class="ml_title_delivery">
+          <h2>Tipo de entrega</h2>
+        </div>
+        <div class="ml_container_delivery">
+          <label for=""> Tipo de entrega </label>
+          <select name="" id="" [(ngModel)]="deliveryType">
+            <option value="">Seleccione una opción</option>
+            <option value="domicilio">A domicilio</option>
+          </select>
+        </div>
+        <div class="ml_container_delivery">
+          <label for=""> Envio </label>
+          <select name="" id="" [(ngModel)]="shippingOption">
+            <option value="">Seleccione una opción</option>
+            <option value="120"> $120 Paqueteria: Estafeta </option>
+            <option value="150"> $150 Paqueteria: DHL </option>
+            <option value="200"> $200 Paqueteria: Fedex </option>
+            <option value="200"> $200 Paqueteria: Express </option>
+          </select>
+        </div>
+      </div>
+      <div *ngIf="deliveryType != '' && shippingOption != '' " class="ml_container_delivery_option">
+        <div class="ml_title_delivery">
+          <h2>Domicilio</h2>
+        </div>
+        <div class="ml_container_delivery">
+          <label for=""> Elegir domicilio </label>
+          <select name="" id="" [(ngModel)]="selectedAddress">
+            <option value="">Seleccione una opción</option>
+            <option value="1">Calle Poseidon #29 av Rey de Lomas</option>
+          </select>
+        </div>
+      </div>
+
+      <div *ngIf="deliveryType != '' && shippingOption != '' && selectedAddress != ''  " class="ml_container_delivery_option">
+        <div class="ml_title_delivery">
+          <h2>Cupón</h2>
+        </div>
+        <div class="ml_container_delivery">
+          <label for=""> Elegir cupón </label>
+          <select name="" id="" [(ngModel)]="selectedCoupon">
+            <option value="">Seleccione una opción</option>
+            <option value="30">30% de descuento</option>
+            <option value="10">10% de descuento</option>
+            <option value="5">5% de descuento</option>
+          </select>
+        </div>
+      </div>
+      <div class="ml_container_total ml_container_delivery_option">
+        <div class="ml_title_total">
+          <p>Total</p>
+        </div>
+        <div class="ml_container_total_price">
+          <!-- <p>Subtotal : ${{cartInfo.cart.totalPrice}}</p>
+          <p>Envío : ${{shippingOption}}</p>
+          <p>Total : ${{ cartInfo.cart.totalPrice +  + shippingOption }}</p> -->
+
+          <p>Subtotal : ${{cartInfo.cart.totalPrice}}</p>
+          <p>Envío : ${{shippingOption}}</p>
+          <p>Descuento : ${{ calculateDiscount() | number:'1.2-2' }}</p>
+          <p>Total : ${{ calculateTotal() }}</p>
+        </div>
+        <div class="ml_container_button_checkout">
+          <!-- <button class="ml_button_checkout" >Comprar</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

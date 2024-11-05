@@ -37,8 +37,15 @@ export class CartService {
         'x-token' : token
       }
     }).subscribe( resp => {
-      console.log('este es un log de carrito', resp);
       this.cartInfo = resp;
+    });
+  }
+
+  deleteItemById( body : any, token : string ) {
+    return this.http.post<CartInterface>(`${environmnet.ENV_URL}/api/cart/deleteItemCartById`,body ,{
+      headers : {
+        'x-token' : token
+      }
     });
   }
 

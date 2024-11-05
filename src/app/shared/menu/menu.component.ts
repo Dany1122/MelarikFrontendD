@@ -7,9 +7,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import { RippleModule } from 'primeng/ripple';
 import { CategoriesService } from '../../services/categories.service'
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { TruncatePipe } from '../../pipe/truncate.pipe';
+import { Item } from '../../interfaces/cart.interface';
 
 @Component({
   selector: 'app-menu',
@@ -28,28 +29,38 @@ import { TruncatePipe } from '../../pipe/truncate.pipe';
 })
 export class MenuComponent implements OnInit {
   image = 'assets/rosa.png';
-
   items : MenuItem[] | undefined;
   hideCartPreview : boolean = true;
+  viewCart : boolean = false;
 
   constructor(
     private categoriesService : CategoriesService,
     private router : Router,
     private CartService : CartService
-  ){}
+  ){
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.checkCurrentRoute();
+      }
+    });
+  }
 
   ngOnInit() {
+    this.checkCurrentRoute();
+
+
+
 
 
     const token = localStorage.getItem('token');
 
     this.categoriesService.getCategories(token!).subscribe( resp => {
-      console.log('este es un log den categories', resp);
 
       this.items = [
         {
             label: 'Inicio',
-            icon: 'pi pi-home'
+            icon: 'pi pi-home',
+            command: (event) => this.goToHome()
         },
         {
             label: 'Categorias',
@@ -102,12 +113,44 @@ export class MenuComponent implements OnInit {
     })
 }
 
+private checkCurrentRoute(): void {
+  const currentRoute = this.router.url;
+  if (currentRoute === '/home/checkout') {
+    this.viewCart = true;
+  } else {
+    this.viewCart = false;
+  }
+}
+
 onMenuItemClick(item: any) {
 
   if (item.category_id) {
     console.log('id_category', item.category_id);
-    this.router.navigateByUrl(`/home/products?category=${item.category_id}`);
+    this.router.navigateByUrl(`/home/products?category=${item.category_id}`, { skipLocationChange: true,  });
   }
+}
+
+goToHome() {
+  this.router.navigateByUrl('/home');
+}
+
+deleteItemCartByProductId(item: Item) {
+  const user = localStorage.getItem('uid');
+  const token = localStorage.getItem('token');
+
+  const body = {
+    userId : Number(user),
+    productId : item.sku
+  }
+
+
+  this.CartService.deleteItemById(body, token! ).subscribe( resp => {
+
+    //TODO : mostrar mensaje de exito
+
+    this.CartService.getCartByUser(body, token!)
+  });
+
 }
 
 handleMenuCart(e: Event) {
@@ -122,6 +165,22 @@ get countProducts() {
 
 get productsCart() {
   return this.CartService.cartInfo.cart.items;
+}
+
+get cartInfo() {
+  return this.CartService.cartInfo;
+}
+
+goToCheckout() {
+
+
+  if (this.CartService.cartInfo.cart.totalProducts < 1) {
+    console.log('no hay productos en el carrito');
+    return;
+
+  }
+  this.hideCartPreview = true;
+  this.router.navigate(['/home/checkout'], {});
 }
 
 

@@ -8,6 +8,7 @@
 }
 .ml_container_search_avatar_menu input {
   right: 5%;
+  width: 12rem;
 }
 
 .p-menubar-end {
@@ -31,7 +32,7 @@
   }
   .ml_menu_image input {
     margin: 5%;
-    width: 300px;
+    width: 12rem;
     border: none;
     border-radius: 6px;
     padding: 5px;
@@ -41,18 +42,53 @@
     background: aliceblue;
     margin-top: 0.5em;
     left: 0;
-    overflow-x: hidden;
-    height: 85%;
+    height: 100%;
     min-height: 50%;
     width: 100%;
+  }
+  .ml_buy_car .ml_container_cart {
+    overflow: auto;
+    height: 70%;
+  }
+  .ml_buy_car .ml_container_cart .ml_icon_trash_product {
+    display: flex;
+    align-items: center;
+  }
+  .ml_buy_car .ml_container_cart .ml_icon_trash_product i {
+    cursor: pointer;
+  }
+  .ml_buy_car .ml_container_cart .ml_icon_trash_product i:hover {
+    color: red;
+  }
+  .ml_buy_car .ml_container_footer_cart {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+  }
+  .ml_buy_car .ml_container_footer_cart .ml_button_cart {
+    background-color: #ed95a5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .ml_buy_car .ml_container_footer_cart .ml_button_cart:hover {
+    background-color: #faddfb;
   }
   .hiden {
     display: none;
   }
   .ml_container_cart_products {
     display: flex;
-    padding-left: 33px;
-    padding-right: 10px;
+    padding: 1.5em;
+    font-size: 0.8rem;
+  }
+  .ml_container_cart_products .info {
+    width: 100%;
   }
 }
 @media (min-width: 768px) {
@@ -63,5 +99,11 @@
     margin-top: 1.5em;
     left: inherit;
     margin-left: -24em;
+    width: 28em;
+    padding: 0.5em;
+  }
+  .ml_buy_car .ml_container_cart {
+    overflow: auto;
+    height: 80%;
   }
 }/*# sourceMappingURL=menu.component.css.map */

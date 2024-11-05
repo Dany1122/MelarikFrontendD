@@ -1,24 +1,30 @@
 <!--{{ products | json }}-->
 
 <div class="conteiner">
-    <h1>Productos</h1>
-    <div class="ml_container_products">
-      @for (product of products; track product.id) {
-          <div class="grid">
-              <div class="items">
-                <img src={{product.url_image}} alt="Maquillaje">
-                <div class="info">
-                  <h3>{{product.name_product}}</h3>
-                  <p>{{product.description | pipeTruncate }}</p>
-                  <div class="precio">
-                    <p>${{product.price}}</p>
-                  </div>
-                  <input type="number" class="ml_input_products" [(ngModel)]="product.quantity" >
-                  <button (click)="addToCart(product)" >Agregar al carrito</button>
-                </div>
-              </div>
+  <h1>Productos</h1>
+  <div class="ml_container_products">
+    @for (product of products; track product.id) {
+      <div class="grid">
+        <div class="items">
+          <img src={{product.url_image}} alt="Maquillaje">
+          <div class="info">
+            <h3>{{product.name_product}}</h3>
+            <p>{{product.description | pipeTruncate }}</p>
+            <div class="precio">
+              <p>${{product.price}}</p>
             </div>
-        }
 
-    </div>
+            <div class="ml_container_input">
+              <i class="pi pi-minus ml_minus " (click)="decrementQuantity(product)"  ></i>
+              <input type="number" class="ml_input_products" (keypress)="validateInput($event)" [value]="product.quantity ? product.quantity : 1" [(ngModel)]="product.quantity" >
+              <i class="pi pi-plus ml_plus " (click)="incrementQuantity(product)" ></i>
+            </div>
+          </div>
+          <button (click)="addToCart(product)" >Agregar al carrito</button>
+        </div>
+      </div>
+    }
   </div>
+</div>
+
+

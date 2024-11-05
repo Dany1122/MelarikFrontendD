@@ -28,7 +28,6 @@ export class DashboardComponent {
   }
 
   ngOnInit(): void {
-    console.log('Este es un log');
     const token = localStorage.getItem('token');
     const uid = localStorage.getItem('uid');
 

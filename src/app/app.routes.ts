@@ -14,6 +14,10 @@ const dashboardRoutes: Routes = [
   {
     path : 'products',
     loadComponent: () => import('./dashboard/pages/products/products.component').then(m => m.ProductsComponent),
+  },
+  {
+    path : 'checkout',
+    loadComponent: () => import('./dashboard/pages/checkout/checkout.component').then(m => m.CheckoutComponent),
   }
 
 ];

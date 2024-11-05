@@ -1,0 +1,76 @@
+@media (min-width: 0px) {
+  .ml_main_checkout {
+    padding: 1em;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .ml_main_checkout .ml_title_checkout {
+    display: flex;
+    justify-content: center;
+    color: #3026a1;
+    font-size: 2em;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_title_cart {
+    display: flex;
+    justify-content: center;
+    color: #3026a1;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_container_products {
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 1em;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_container_products .ml_container_cart_products {
+    display: flex;
+    -moz-column-gap: 30px;
+         column-gap: 30px;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option {
+    padding: 1em;
+    border: 1px solid gray;
+    margin-top: 1em;
+    border-radius: 6px;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_title_delivery {
+    display: flex;
+    justify-content: center;
+    color: #3026a1;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_container_delivery select {
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    height: 2.5em;
+    color: grey;
+    margin-bottom: 1em;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_container_delivery select::-webkit-outer-spin-button, .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_container_delivery select::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_total {
+    border: 1px solid gray;
+    padding: 1em;
+    margin-top: 1em;
+    border-radius: 6px;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_total .ml_title_total {
+    display: flex;
+    justify-content: center;
+    color: #3026a1;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+}
+@media (min-width: 768px) {
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option {
+    display: flex;
+    flex-wrap: wrap;
+    -moz-column-gap: 1em;
+         column-gap: 1em;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_container_delivery_option {
+    width: 48%;
+  }
+}/*# sourceMappingURL=checkout.component.css.map */

@@ -1,18 +1,55 @@
 @import '../../../../variables.scss';
 
 @media ( min-width: $mobile ) {
-  :host {
-    display: block;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-  }
   .conteiner{
-    // background-color: pink;
+    .ml_container_products{
+      .grid{
+        .items{
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          .info{
+            width: 100%;
+            flex: 1;
+          }
+          .ml_container_input{
+            .ml_input_products{
+              width: 100%;
+              border: none;
+              border-radius: 6px;
+              text-align: center;
+              height: 2.5em;
+              color: grey;
+              margin-bottom: 1em;
+              &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+            }
+            .ml_minus{
+              position: absolute;
+              color: gray;
+              cursor: pointer;
+              margin-top: .5em;
+              margin-left: .5em;
+              &:hover{
+                color: pink;
+              }
+            }
+            .ml_plus{
+              position: absolute;
+              color: gray;
+              cursor: pointer;
+              margin-top: .5em;
+              margin-left: -1.5em;
+              &:hover{
+                color: pink;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   .conteiner nav{
@@ -40,14 +77,19 @@
   }
   .items{
     border: solid thin plum;
+    padding: .5em;
   }
 
   .items img{
     width: 100%;
     height: 170px;
+    object-fit: cover;
+
   }
   .info{
-    padding: 15px;
+    .input{
+      width: 5rem;
+    }
   }
   .info h3{
     font-size: 1.2rem;
@@ -56,21 +98,21 @@
     font-size: 1rem;
 
   }
-  .info button{
-    padding: 1rem;
+  button{
     width: 100%;
-    height: 100;
+    // height: 100px;
+    padding: .5em;
     background-color: palevioletred;
     border: none;
     outline: none;
     color: beige;
     text-transform: uppercase;
-    font-size: 1.1rem;
+    font-size: .9rem;
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 5px;
   }
-  .info button:hover{
+  button:hover{
     background-color: plum;
     transition: all .3s;
   }
@@ -79,6 +121,7 @@
     flex-wrap: wrap;
     column-gap: 10px;
     justify-content: center;
+    row-gap: 1em;
   }
 
 }
