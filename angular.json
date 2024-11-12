@@ -14,7 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "lodash"
+              "algoliasearch"
             ],
             "outputPath": "dist/melarik",
             "index": "src/index.html",
