@@ -14,7 +14,31 @@
       </ng-template>
       <ng-template pTemplate="end">
           <div class="ml_container_search_avatar_menu">
-              <input type="text" pInputText placeholder="Search" class="w-8rem sm:w-auto" />
+              <input (keyup.escape)="onScape()" type="text" pInputText placeholder="Search" class="w-8rem sm:w-auto" (input)="handleSearch()"  [(ngModel)]="query"  [ngModelOptions]="{standalone : true}" />
+
+              @if (results.length > 0) {
+                <div  class="ml_container_hits">
+                  @for (item of results; track $index) {
+                    <div class="hit_cards">
+                      <div class="hit_img">
+                        <img src={{item.url_image}} alt="Maquillaje" width="80px" height="80px" >
+                      </div>
+                      <div class="hit_info">
+                        <p>{{item.name_product}}</p>
+                        <p>{{item.description | pipeTruncate }}</p>
+                        <p>${{item.price}}</p>
+                      </div>
+                    </div>
+                  }
+                </div>
+
+              }@else {
+                @if (!hidecontainer) {
+                  <div *ngIf="results.length == 0 && query != ''" class="ml_container_hits">
+                    <p>No hay resultados</p>
+                  </div>
+                }
+              }
               <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
 
               <div *ngIf="!viewCart" class="carrito">
@@ -65,6 +89,10 @@
 
 
             </div>
+
+
       </ng-template>
+
+
   </p-menubar>
 

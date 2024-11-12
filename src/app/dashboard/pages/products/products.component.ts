@@ -73,7 +73,6 @@ export class ProductsComponent implements OnInit {
 
 
       this.CartService.addToCart(body,token!).subscribe( resp => {
-        console.log('este es un log de respuesta de agregar productos', resp);
 
         //TODO : mostrar mensaje de exito
 

@@ -21,6 +21,21 @@
 
 
 @media ( min-width: $mobile ) {
+
+  .ml_container_hits{
+    position: absolute;
+    top: 4em;
+    background: white;
+    padding: 1em;
+    border-radius: 6px;
+    max-height: 35em;
+    overflow-y: auto;
+    left: 0;
+    width: 100%;
+    .hit_cards{
+      display: flex;
+    }
+  }
   .ml_menu_image{
       background-color: #faddfb;
       display: block;

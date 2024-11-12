@@ -7,6 +7,11 @@
       <div class="ml_title_cart">
         <h3>Resumen de carrito</h3>
       </div>
+      @if (productsCart.length == 0) {
+      <div class="ml_empty_cart">
+        <p>Carrito vacio por favor agregue productos al carrito</p>
+      </div>
+      }@else {
       <div class="ml_container_products">
         <div class="ml_container_cart_products" *ngFor="let product of productsCart; let i = index">
           <div class="oa_container_img">
@@ -22,9 +27,9 @@
           </div>
         </div>
       </div>
+      }
     </div>
-
-       <div class="ml_delivery_option">
+    <div *ngIf=" productsCart.length > 0 " class="ml_delivery_option">
       <div class="ml_container_delivery_option">
         <div class="ml_title_delivery">
           <h2>Tipo de entrega</h2>
@@ -33,17 +38,17 @@
           <label for=""> Tipo de entrega </label>
           <select name="" id="" [(ngModel)]="deliveryType">
             <option value="">Seleccione una opción</option>
-            <option value="domicilio">A domicilio</option>
+            <option value="A Domicilio">A domicilio</option>
           </select>
         </div>
         <div class="ml_container_delivery">
           <label for=""> Envio </label>
           <select name="" id="" [(ngModel)]="shippingOption">
             <option value="">Seleccione una opción</option>
-            <option value="120"> $120 Paqueteria: Estafeta </option>
-            <option value="150"> $150 Paqueteria: DHL </option>
-            <option value="200"> $200 Paqueteria: Fedex </option>
-            <option value="200"> $200 Paqueteria: Express </option>
+            <option value="Estafeta"> $120 Paqueteria: Estafeta </option>
+            <option value="DHL"> $150 Paqueteria: DHL </option>
+            <option value="FedEx"> $200 Paqueteria: Fedex </option>
+            <option value="Express"> $200 Paqueteria: Express </option>
           </select>
         </div>
       </div>
@@ -55,12 +60,13 @@
           <label for=""> Elegir domicilio </label>
           <select name="" id="" [(ngModel)]="selectedAddress">
             <option value="">Seleccione una opción</option>
-            <option value="1">Calle Poseidon #29 av Rey de Lomas</option>
+            <option [value]="address">{{address}}</option>
           </select>
         </div>
       </div>
 
-      <div *ngIf="deliveryType != '' && shippingOption != '' && selectedAddress != ''  " class="ml_container_delivery_option">
+      <div *ngIf="deliveryType != '' && shippingOption != '' && selectedAddress != ''  "
+        class="ml_container_delivery_option">
         <div class="ml_title_delivery">
           <h2>Cupón</h2>
         </div>
@@ -68,10 +74,58 @@
           <label for=""> Elegir cupón </label>
           <select name="" id="" [(ngModel)]="selectedCoupon">
             <option value="">Seleccione una opción</option>
-            <option value="30">30% de descuento</option>
+            <option value="15">15% de descuento</option>
             <option value="10">10% de descuento</option>
             <option value="5">5% de descuento</option>
           </select>
+        </div>
+      </div>
+
+      <div *ngIf="deliveryType != '' && shippingOption != '' && selectedAddress != '' && selectedCoupon  "
+        class="ml_container_delivery_option">
+        <div class="ml_title_delivery">
+          <h2>tipo de pago</h2>
+        </div>
+        <div class="ml_container_delivery">
+          <label for=""> Elegir tipo de pago </label>
+          <select name="" id="" [(ngModel)]="paymentMethod">
+            <option value="">Seleccione una opción</option>
+            <option value="credito">Tarjeta de credito</option>
+            <option value="debito">Tarjeta de debito</option>
+          </select>
+        </div>
+      </div>
+
+      <div
+        *ngIf="deliveryType != '' && shippingOption != '' && selectedAddress != '' && selectedCoupon && paymentMethod != '' "
+        class="ml_container_delivery_option ml_main_credit_card">
+        <div class="ml_title_delivery">
+          <h2>Datos tarjeta de credito</h2>
+        </div>
+        <div class="ml_container_credit-card">
+          <div class="credit-card">
+            <div class="credit-card__front">
+              <div class="credit-card__logo">VISA</div>
+              <div class="credit-card__number">{{ numberCard | mask: '0000 0000 0000 0000' || '#### #### #### ####' }}
+              </div>
+              <div class="credit-card__name">{{ nameCard || 'Nombre del titular' }}</div>
+              <div class="credit-card__expiry">{{ expirationDate | mask: '00/00' || 'MM/YY' }}</div>
+            </div>
+            <div class="credit-card__back">
+              <div class="credit-card__cvv">{{ cvv || 'CVV' }}</div>
+            </div>
+          </div>
+          <label for=""> Nombre del titular </label>
+          <input type="text" [(ngModel)]="nameCard" placeholder="Nombre del titular" mask="S{30}">
+
+          <label for=""> Numero de tarjeta </label>
+          <input type="text" [(ngModel)]="numberCard" placeholder="Numero de tarjeta" mask="0000-0000-0000-0000">
+
+          <label for=""> Fecha de expiración </label>
+          <input type="text" [(ngModel)]="expirationDate" placeholder="Fecha de expiración" mask="00/00">
+
+          <label for=""> Codigo de seguridad </label>
+          <input type="text" [(ngModel)]="cvv" placeholder="Codigo de seguridad" mask="000">
         </div>
       </div>
       <div class="ml_container_total ml_container_delivery_option">
@@ -80,19 +134,25 @@
         </div>
         <div class="ml_container_total_price">
           <!-- <p>Subtotal : ${{cartInfo.cart.totalPrice}}</p>
-          <p>Envío : ${{shippingOption}}</p>
-          <p>Total : ${{ cartInfo.cart.totalPrice +  + shippingOption }}</p> -->
+       <p>Envío : ${{shippingOption}}</p>
+       <p>Total : ${{ cartInfo.cart.totalPrice +  + shippingOption }}</p> -->
 
           <p>Subtotal : ${{cartInfo.cart.totalPrice}}</p>
-          <p>Envío : ${{shippingOption}}</p>
+          <p>Envío : ${{shippingOption == 'Estafeta' ? 120 : shippingOption == 'DHL' ? 150 : shippingOption == 'FedEx' ?
+            200 : shippingOption == 'Express' ? 200 : 0 }}</p>
           <p>Descuento : ${{ calculateDiscount() | number:'1.2-2' }}</p>
           <p>Total : ${{ calculateTotal() }}</p>
+
+          <div class="ml_button_checkout">
+            <button class="ml_button_checkout" (click)="handlecheckout()">Comprar</button>
+          </div>
+
         </div>
         <div class="ml_container_button_checkout">
           <!-- <button class="ml_button_checkout" >Comprar</button> -->
         </div>
       </div>
     </div>
+
   </div>
 </div>
-

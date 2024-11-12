@@ -17,9 +17,20 @@ import { CartService } from './services/cart.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title: string = 'Melarik';
   num2 = 0;
+  private reminderInterval: any;
+
+  constructor(
+    private CartService : CartService
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.startReminder();
+  }
+
   test(){
     console.log('Este es un evento');
 
@@ -27,5 +38,24 @@ export class AppComponent {
   suma(num: number){
     this.num2 = num + this.num2;
     console.log(this.num2);
+  }
+
+  startReminder() {
+    this.reminderInterval = setInterval(() => {
+      this.remindUser();
+    }, 30 * 1000); // 30 segundos en milisegundos
+  }
+
+  remindUser() {
+
+    if (this.cartItems?.length > 0) {
+      console.log('Recuerda que tienes productos en tu carrito de compras.');
+      alert('Recuerda que tienes productos en tu carrito de compras.');
+      return;
+    }
+  }
+
+  get cartItems() {
+    return this.CartService.cartInfo.cart?.items;
   }
 }

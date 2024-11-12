@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
@@ -11,12 +11,15 @@ import { NavigationEnd, Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { TruncatePipe } from '../../pipe/truncate.pipe';
 import { Item } from '../../interfaces/cart.interface';
+import { FormsModule } from '@angular/forms';
+import { AlgoliaService } from '../../services/algolia.service';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     MenubarModule,
     BadgeModule,
     AvatarModule,
@@ -32,11 +35,17 @@ export class MenuComponent implements OnInit {
   items : MenuItem[] | undefined;
   hideCartPreview : boolean = true;
   viewCart : boolean = false;
+  query : string = '';
+  hidecontainer : boolean = false;
+  results : any = [];
 
   constructor(
     private categoriesService : CategoriesService,
     private router : Router,
-    private CartService : CartService
+    private CartService : CartService,
+    private AlgoliaService : AlgoliaService,
+    private render : Renderer2,
+    private el : ElementRef
   ){
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -47,6 +56,13 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.checkCurrentRoute();
+
+    this.render.listen('window', 'click', (e) => {
+      if ( !this.el.nativeElement.contains(e.target) ) {
+        this.results = [];
+        this.hidecontainer = true;
+      }
+    });
 
 
 
@@ -86,15 +102,12 @@ export class MenuComponent implements OnInit {
         {
             label: 'Historial',
             // icon: 'pi pi-search',
+            command: (event) => this.goToHistory()
         },
         {
             label: 'Usuario',
             // icon: 'pi pi-envelope',
             // badge: '3'
-        },
-        {
-          label : 'Mis compras',
-          icon : 'pi pi-shopping-cart'
         },
         {
           label : 'Salir',
@@ -132,6 +145,9 @@ onMenuItemClick(item: any) {
 
 goToHome() {
   this.router.navigateByUrl('/home');
+}
+goToHistory() {
+  this.router.navigateByUrl('/home/history');
 }
 
 deleteItemCartByProductId(item: Item) {
@@ -181,6 +197,45 @@ goToCheckout() {
   }
   this.hideCartPreview = true;
   this.router.navigate(['/home/checkout'], {});
+}
+
+handleSearch() {
+
+
+  const trimmedQuery = this.query.trim();
+
+  if (trimmedQuery.length > 0) {
+    if ( trimmedQuery.trim().length >= 3 ) {
+      this.AlgoliaService.search(trimmedQuery).then( (resp : any) => {
+
+        this.hidecontainer = false;
+
+        this.results = resp.hits.map((hit : any) => {
+          return {
+            ...hit,
+            quantity : 1
+          }
+        });
+      }).catch( (err:any) => {
+        console.log('err', err);
+      });
+    }else {
+      this.results = [];
+    }
+  }else {
+    this.results = [];
+  }
+
+}
+
+cleanSearch () {
+  this.query = '';
+  this.results = [];
+}
+
+onScape() {
+  this.results = [];
+  this.query = '';
 }
 
 
