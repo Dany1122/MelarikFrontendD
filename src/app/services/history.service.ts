@@ -13,11 +13,10 @@ export class HistoryService {
     private http: HttpClient
   ) { }
 
-  getHistory( userId : number ) : Observable<ResponseHistoryInterface> {
-    userId = 100;
-    return this.http.post<ResponseHistoryInterface>(`${environmnet.ENV_URL}/api/order/getOrderHistoryByUserId`, { userId }, {
+  getHistory( token: string, body : {} ) : Observable<ResponseHistoryInterface> {
+    return this.http.post<ResponseHistoryInterface>(`${environmnet.ENV_URL}/api/order/getOrderHistoryByUserId`, body, {
       headers : {
-        'x-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEwMCwibmFtZSI6IkVyaWNrIFJhbW9zIiwiaWF0IjoxNzI2NDMxNTE3LCJleHAiOjE3MjY0Mzg3MTd9.WUlJSZJ4X3gpZwsiQsoGqO3A4b1qQu_p0-XI4_3uQFw'
+        'x-token' : token
       }
     });
   }

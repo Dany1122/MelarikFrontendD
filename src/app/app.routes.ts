@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes, CanActivate } from '@angular/router';
 import { authGuard } from './guard/auth.guard';
 import { loginGuard } from './guard/login.guard';
 
@@ -10,6 +10,7 @@ const dashboardRoutes: Routes = [
   {
     path : 'history',
     loadComponent: () => import('./dashboard/pages/history/history.component').then(m => m.HistoryComponent),
+    canActivate: [authGuard]
   },
   {
     path : 'products',
@@ -18,6 +19,12 @@ const dashboardRoutes: Routes = [
   {
     path : 'checkout',
     loadComponent: () => import('./dashboard/pages/checkout/checkout.component').then(m => m.CheckoutComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path : 'user',
+    loadComponent: () => import('./dashboard/pages/user/user.component').then(m => m.UserComponent),
+    canActivate: [authGuard]
   }
 
 ];
@@ -34,7 +41,7 @@ export const routes: Routes = [
     path: 'home',
     loadComponent: () => import('./dashboard/dashboard.component').then(m => m.DashboardComponent),
     children: dashboardRoutes,
-    canActivate: [authGuard],
+
   },
 
   {

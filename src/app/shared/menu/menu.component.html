@@ -82,6 +82,8 @@
                           <div class="ml_container_footer_cart">
                             <p>Total : ${{cartInfo.cart.totalPrice}}</p>
                             <button class="ml_button_cart"  (click)="goToCheckout()" >Comprar</button>
+
+                            <button *ngIf=" !token " class="ml_button_cart"  (click)="goToLogin()" > Iniciar sesion</button>
                           </div>
                         </div>
 

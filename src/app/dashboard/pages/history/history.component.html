@@ -1,3 +1,24 @@
-<p>history works!</p>
+<div class="ml_main_history">
+  <div class="ml_title">
+    <h1>Historial de compras</h1>
+  </div>
 
-{{dataHistory.msg}}
+  <div class="ml_container_history">
+    <div class="ml_cards">
+      @for (item of dataHistory.orders; track $index) {
+        <div class="ml_card">
+          <div class="ml_card_info">
+            <p>Nombre: {{item.full_name}} </p>
+            <p>
+              Dirección: {{item.address}}
+            </p>
+            <p>Pais: Mexico</p>
+            <p>Fecha de compra: {{item.createdAt | date: 'd \'de\' MMMM \'de\' y' }}</p>
+            <p>Estado: {{item.status}}</p>
+            <p>Total: ${{item.total_price}}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

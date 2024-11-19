@@ -1,0 +1,26 @@
+@import '../../../../variables.scss';
+
+@media ( min-width: $mobile ) {
+  .ml_main_history{
+    .ml_container_history{
+      .ml_cards{
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 8%;
+        row-gap: 2em;
+        margin-bottom: 1em;
+        justify-content: center;
+        .ml_card{
+          border: 1px solid;
+          padding: 1em;
+          border-radius: 6px;
+          color : $colorText;
+          background-color: #ffc3f5;
+        }
+      }
+    }
+  }
+}
+@media ( min-width: $tablet ) {}
+@media ( min-width: $desktop ) {}
+

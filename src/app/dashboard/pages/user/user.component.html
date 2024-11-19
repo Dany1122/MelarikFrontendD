@@ -1,0 +1,22 @@
+<div class="ml_container_info">
+  <div class="ml_main_info">
+    <div class="user-card">
+      <div class="user-card__header">
+        <img src="https://brandeps.com/icon-download/U/User-icon-vector-21.svg" alt="Foto de perfil" class="user-card__image">
+      </div>
+      <div class="user-card__body">
+        <h2 class="user-card__name">{{ data.name  }}</h2>
+        <p class="user-card__email">{{ data.email }}</p>
+        <p class="user-card__address">{{ data.address }}</p>
+        <p class="user-card__phone">{{ data.phone }}</p>
+        <p class="user-card__phone">{{ data.billingaddress }}</p>
+        <p class="user-card__phone">{{ data.age }}</p>
+        <p class="user-card__phone">{{ data.brands.length == 0 ? '' : data.brands }} </p>
+        <p class="user-card__phone">{{ data.gender== 'female' ? 'Femenino' : 'Masculino' }} </p>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>

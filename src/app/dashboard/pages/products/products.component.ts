@@ -37,7 +37,10 @@ export class ProductsComponent implements OnInit {
 
     ngOnInit(): void {
       this.router.queryParams.subscribe( params => {
-        const token = localStorage.getItem('token');
+        let token = localStorage.getItem('token');
+        if ( !token) {
+          token = '';
+        }
         const body = {
           category_id : Number(params['category'])
         }
@@ -57,13 +60,16 @@ export class ProductsComponent implements OnInit {
 
     addToCart( product : Product ) {
 
-
       if ( product.quantity < 1 ) {
         return;
       }
 
       const uid = Number(localStorage.getItem('uid'));
-      const token = localStorage.getItem('token');
+      let token = localStorage.getItem('token');
+
+      if (  !token ) {
+        alert('Debes iniciar sesion para agregar productos al carrito');
+      }
 
       const body = {
         userId : uid,

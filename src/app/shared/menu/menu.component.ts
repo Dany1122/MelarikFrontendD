@@ -68,7 +68,11 @@ export class MenuComponent implements OnInit {
 
 
 
-    const token = localStorage.getItem('token');
+    let token = localStorage.getItem('token');
+    if (!token) {
+      token = '';
+
+    }
 
     this.categoriesService.getCategories(token!).subscribe( resp => {
 
@@ -106,12 +110,15 @@ export class MenuComponent implements OnInit {
         },
         {
             label: 'Usuario',
-            // icon: 'pi pi-envelope',
+            icon: 'pi pi-user',
+            command: (event) => this.userPage()
+
             // badge: '3'
         },
         {
-          label : 'Salir',
-          icon : 'pi pi-outdoor'
+          label : this.token ? 'Cerrar sesion' : 'Iniciar sesion',
+          icon : 'pi pi-outdoor',
+          command : (event) => this.logOut()
         }
     ];
 
@@ -139,12 +146,20 @@ onMenuItemClick(item: any) {
 
   if (item.category_id) {
     console.log('id_category', item.category_id);
-    this.router.navigateByUrl(`/home/products?category=${item.category_id}`, { skipLocationChange: true,  });
+    this.router.navigateByUrl(`/home/products?category=${item.category_id}`);
   }
 }
 
 goToHome() {
   this.router.navigateByUrl('/home');
+}
+
+userPage() {
+  window.location.href = '/home/user';
+}
+logOut() {
+  localStorage.clear();
+  window.location.href = '/login';
 }
 goToHistory() {
   this.router.navigateByUrl('/home/history');
@@ -187,11 +202,16 @@ get cartInfo() {
   return this.CartService.cartInfo;
 }
 
+get token () {
+  return localStorage.getItem('token');
+}
+
+
 goToCheckout() {
 
 
   if (this.CartService.cartInfo.cart.totalProducts < 1) {
-    console.log('no hay productos en el carrito');
+    alert('No hay productos en el carrito');
     return;
 
   }
@@ -236,6 +256,11 @@ cleanSearch () {
 onScape() {
   this.results = [];
   this.query = '';
+}
+
+goToLogin() {
+  window.location.href = '/login';
+
 }
 
 
