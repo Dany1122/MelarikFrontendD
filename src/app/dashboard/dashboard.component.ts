@@ -14,7 +14,7 @@ import { CartService } from '../services/cart.service';
     RouterOutlet,
     MenuComponent,
     SubmenuComponent,
-    FooterComponent
+    FooterComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',

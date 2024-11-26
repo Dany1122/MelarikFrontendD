@@ -4,6 +4,8 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { SubmenuComponent } from "./shared/submenu/submenu.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { CartService } from './services/cart.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,8 @@ import { CartService } from './services/cart.service';
     RouterOutlet,
     MenuComponent,
     SubmenuComponent,
-    FooterComponent
+    FooterComponent,
+    ToastModule
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -23,7 +26,8 @@ export class AppComponent implements OnInit {
   private reminderInterval: any;
 
   constructor(
-    private CartService : CartService
+    private CartService : CartService,
+    private MessageService : MessageService
   ) {
   }
 
@@ -50,7 +54,7 @@ export class AppComponent implements OnInit {
 
     if (this.cartItems?.length > 0) {
       console.log('Recuerda que tienes productos en tu carrito de compras.');
-      alert('Recuerda que tienes productos en tu carrito de compras.');
+      this.MessageService.add({severity:'info', summary:'Recuerda que tienes productos en tu carrito de compras.'});
       return;
     }
   }

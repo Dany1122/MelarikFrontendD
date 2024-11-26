@@ -7,6 +7,7 @@ import { InfoPersonalByUserService } from '../../../services/info-personal-by-us
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { CheckoutService } from '../../../services/checkout.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-checkout',
@@ -27,7 +28,8 @@ export class CheckoutComponent {
       private CartService : CartService,
       private InfoPersonalByUserService : InfoPersonalByUserService,
       private CheckoutService : CheckoutService,
-      private router : Router
+      private router : Router,
+      private MessageService : MessageService
     ) {
     }
 
@@ -97,32 +99,32 @@ export class CheckoutComponent {
     handlecheckout() {
       if ( this.deliveryType == ''  ) {
         console.log('Selecciona un tipo de envío');
-        alert('Selecciona un tipo de envío');
+        this.MessageService.add({severity:'error', summary:'Error', detail:'Selecciona un tipo de envío'});
         return;
       }
 
       if ( this.shippingOption == '' ) {
         console.log('Selecciona una opción de envío');
-        alert('Selecciona una opción de envío');
+        this.MessageService.add({severity:'error', summary:'Error', detail:'Selecciona una opción de envío'});
         return;
       }
 
       if ( this.selectedAddress == '' ) {
         console.log('Selecciona una dirección de envío');
-        alert('Selecciona una dirección de envío');
+        this.MessageService.add({severity:'error', summary:'Error', detail:'Selecciona una dirección de envío'});
         return;
       }
 
       if ( this.paymentMethod == '' ) {
         console.log('Selecciona un método de pago');
-        alert('Selecciona un método de pago');
+        this.MessageService.add({severity:'error', summary:'Error', detail:'Selecciona un método de pago'});
         return;
       }
 
       if ( this.paymentMethod == 'credito' || this.paymentMethod == 'debito' ) {
         if ( this.nameCard == '' || this.numberCard == '' || this.expirationDate == '' || this.cvv == '' ) {
           console.log('Completa los datos de la tarjeta');
-          alert('Completa los datos de la tarjeta');
+          this.MessageService.add({severity:'error', summary:'Error', detail:'Completa los datos de la tarjeta'});
           return;
         }
       }
@@ -153,11 +155,11 @@ export class CheckoutComponent {
         this.CheckoutService.createOrder(token!, body).subscribe((data) => {
 
           if ( data.success ) {
-            alert(data.msg);
+            this.MessageService.add({severity:'success', summary:'Success', detail:data.msg});
             window.location.href = '/home/history';
 
           } else {
-            alert('Error al crear la orden');
+            this.MessageService.add({severity:'error', summary:'Error', detail:data.msg});
           }
         });
 

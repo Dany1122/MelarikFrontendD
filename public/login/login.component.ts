@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputMaskModule } from 'primeng/inputmask';
+import { MessageService } from 'primeng/api';
 
 interface City {
   name: string,
@@ -36,7 +37,8 @@ interface City {
 export class LoginComponent implements OnInit {
   constructor(
     private AuthService: AuthService,
-    private router: Router
+    private router: Router,
+    private MessageService: MessageService
   ) {}
 
   imgSrc = 'assets/rosa.png';
@@ -73,6 +75,9 @@ export class LoginComponent implements OnInit {
     billingAddress: '',
     gender: ''
   } as any;
+  visibleRecover = false;
+  emailRecover: string = '';
+  blockedButton = false;
 
 
   ngOnInit(): void {
@@ -102,7 +107,7 @@ export class LoginComponent implements OnInit {
     },
     (err) => {
 
-      alert('Invalid credentials');
+      this.MessageService.add({severity:'error', summary: 'Error', detail: 'Invalid credentials'});
     }
   );
 }
@@ -120,6 +125,9 @@ handleShowModal() {
   this.selectedBrands = [];
   this.gender = '';
   this.phone = '';
+}
+handleShowModalRecover() {
+  this.visibleRecover = true;
 }
 
 onSubmit() {
@@ -139,9 +147,9 @@ onSubmit() {
   this.AuthService.createUser(body).subscribe((res) => {
     if (res.success) {
       this.visible = false;
-      alert('User created successfully');
+      this.MessageService.add({severity:'success', summary: 'Success', detail: 'User created successfully'});
     }else {
-      alert('Error creating user');
+      this.MessageService.add({severity:'error', summary: 'Error', detail: 'Error creating user'});
     }
 
   },
@@ -165,5 +173,41 @@ onSubmit() {
 
 clearErrorMessage(field: string) {
   this.errorMessages[field] = '';
+}
+
+onSubmitRecover() {
+  this.blockedButton = true;
+  const body = {
+    email: this.emailRecover
+  }
+  if (this.emailRecover.trim() === '') {
+    this.MessageService.add({ severity: 'error', summary: 'Error', detail: 'Email es requerido' });
+    this.blockedButton = false;
+    return;
+  }
+
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (!emailPattern.test(this.emailRecover)) {
+    this.MessageService.add({ severity: 'error', summary: 'Error', detail: 'Formato de email no es válido' });
+    this.blockedButton = false;
+    return;
+  }
+  this.AuthService.sendLinkResetPassword(body).subscribe((res) => {
+    if (res.success) {
+      this.visibleRecover = false;
+      this.MessageService.add({severity:'success', summary: 'Success', detail: res.msg});
+      this.emailRecover = '';
+      this.blockedButton = false;
+    }else {
+      this.MessageService.add({severity:'error', summary: 'Error', detail: res.msg});
+      this.blockedButton = false;
+    }
+  },
+  (err) => {
+    console.log(err );
+    this.MessageService.add({severity:'error', summary: 'Error', detail: err.error.msg});
+    this.blockedButton = false;
+  }
+);
 }
 }

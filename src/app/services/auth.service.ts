@@ -25,5 +25,13 @@ export class AuthService {
     return this.http.post<CreateUserInterface>(`${environmnet.ENV_URL}/api/auth/new`, body );
   }
 
+  sendLinkResetPassword( body : any ):Observable<any> {
+    return this.http.post<any>(`${environmnet.ENV_URL}/api/auth/sendRecoverLink`, body );
+  }
+
+  resetPassword( body : any ):Observable<any> {
+    return this.http.post<any>(`${environmnet.ENV_URL}/api/auth/recoverPassword`, body );
+  }
+
 
 }

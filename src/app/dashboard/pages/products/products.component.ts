@@ -11,6 +11,7 @@ import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { MenubarModule } from 'primeng/menubar';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -32,7 +33,8 @@ export class ProductsComponent implements OnInit {
     constructor(
       private router : ActivatedRoute,
       private ProductsService : ProductsService,
-      private CartService : CartService
+      private CartService : CartService,
+      private MessageService : MessageService
     ) { }
 
     ngOnInit(): void {
@@ -68,7 +70,7 @@ export class ProductsComponent implements OnInit {
       let token = localStorage.getItem('token');
 
       if (  !token ) {
-        alert('Debes iniciar sesion para agregar productos al carrito');
+        this.MessageService.add({severity:'error', summary:'Error', detail:'Debes iniciar sesion para agregar productos al carrito'});
       }
 
       const body = {

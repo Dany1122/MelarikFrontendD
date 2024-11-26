@@ -43,6 +43,10 @@ export const routes: Routes = [
     children: dashboardRoutes,
 
   },
+  {
+    path: 'reset-password',
+    loadComponent: () => import('./dashboard/pages/reset-password/reset-password.component').then(m => m.ResetPasswordComponent),
+  },
 
   {
     path: '',

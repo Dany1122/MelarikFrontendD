@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { InputTextModule } from 'primeng/inputtext';
@@ -45,7 +45,8 @@ export class MenuComponent implements OnInit {
     private CartService : CartService,
     private AlgoliaService : AlgoliaService,
     private render : Renderer2,
-    private el : ElementRef
+    private el : ElementRef,
+    private MessageService : MessageService
   ){
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -211,7 +212,7 @@ goToCheckout() {
 
 
   if (this.CartService.cartInfo.cart.totalProducts < 1) {
-    alert('No hay productos en el carrito');
+    this.MessageService.add({severity:'error', summary:'Error', detail:'No hay productos en el carrito'});
     return;
 
   }
