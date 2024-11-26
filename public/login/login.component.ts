@@ -112,6 +112,9 @@ export class LoginComponent implements OnInit {
   );
 }
 
+goToPrivacyPolicy() {
+  this.router.navigateByUrl('/privacyPolicy');
+}
 
 handleShowModal() {
   this.visible = true;
