@@ -11,6 +11,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputMaskModule } from 'primeng/inputmask';
 import { MessageService } from 'primeng/api';
+import { LiveChatService } from '@services/livechat.service';
+
 
 interface City {
   name: string,
@@ -38,7 +40,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private AuthService: AuthService,
     private router: Router,
-    private MessageService: MessageService
+    private MessageService: MessageService,
+    private liveChatService: LiveChatService
   ) {}
 
   imgSrc = 'assets/rosa.png';
@@ -94,15 +97,26 @@ export class LoginComponent implements OnInit {
 
 
   handleLogin() {
+    
     let body = {
       email : this.username,
       password : this.password
     }
     this.AuthService.login(body).subscribe((res) => {
       if (res.success) {
+
+        this.liveChatService.setUserData(res.name, res.email);
         localStorage.setItem('token', res.token);
         localStorage.setItem('uid', res.uid);
-        this.router.navigate(['/home']);
+        localStorage.setItem('role', res.role);
+        localStorage.setItem('email',res.email);
+        localStorage.setItem('name',res.name);
+        
+        if (res.role === 1) {
+          this.router.navigate(['/admin']);  // Redirige a admin.component
+        } else {
+          this.router.navigate(['/home']);  // Redirige a home para usuarios normales
+        }
       }
     },
     (err) => {

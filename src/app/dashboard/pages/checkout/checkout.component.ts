@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { CartService } from '../../../services/cart.service';
 import { TruncatePipe } from '../../../pipe/truncate.pipe';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +9,7 @@ import { CheckoutService } from '../../../services/checkout.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
+declare var paypal: any;
 @Component({
   selector: 'app-checkout',
   standalone: true,
@@ -22,7 +23,7 @@ import { MessageService } from 'primeng/api';
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css',
 })
-export class CheckoutComponent {
+export class CheckoutComponent implements AfterViewInit {
 
     constructor(
       private CartService : CartService,
@@ -68,7 +69,16 @@ export class CheckoutComponent {
 
       });
     }
-
+    loadPayPalScript(): Promise<void> {
+      return new Promise((resolve) => {
+        if (document.getElementById('paypal-sdk')) return resolve(); // evita doble carga
+        const script = document.createElement('script');
+        script.id = 'paypal-sdk';
+        script.src = 'https://www.paypal.com/sdk/js?client-id=AXhQHDPvBuH7tvRJwyjJGsTfiV0P3lefu31yOpElmPXqH3XjBhgnnATbQ32WXuHx_G64H8-JfT7ECiR3&currency=MXN';
+        script.onload = () => resolve();
+        document.body.appendChild(script);
+      });
+    }
     // Método para obtener el costo de envío
   getShippingCost(): number {
     return this.shippingOptionsMap[this.shippingOption] || 0;
@@ -164,18 +174,84 @@ export class CheckoutComponent {
         });
 
       });
-
-
-
-
-
-
       console.log('Checkout');
 
     }
+     ngAfterViewInit(): void {
+        if (this.paymentMethod === 'paypal') {
+          this.loadPayPalScript().then(() => {
+            paypal.Buttons({
+              createOrder: (data: any, actions: any) => {
+                return fetch('/api/paypal/create-order', {
+                  method: 'post',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ total: this.calculateTotal() })
+                }).then(res => res.json()).then(data => data.id);
+              },
+              onApprove: (data: any, actions: any) => {
+                return fetch('/api/paypal/capture-order', {
+                  method: 'post',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ orderID: data.orderID })
+                }).then(res => res.json()).then(details => {
+                  this.MessageService.add({severity:'success', summary:'Pago completado', detail: `Gracias ${details.payer.name.given_name}`});
+                  this.router.navigate(['/home/history']);
+                });
+              }
+            }).render('#paypal-button-container');
+          });
+        }
+      }
+      renderPayPalButton(): void {
+        this.loadPayPalScript().then(() => {
+          const container = document.getElementById('paypal-button-container');
+          if (container) container.innerHTML = ''; // limpia antes de renderizar
 
+          paypal.Buttons({
+            createOrder: (data: any, actions: any) => {
+              return fetch('http://localhost:4000/api/paypal/create-order', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ total: this.calculateTotal() })
+              }).then(res => res.json()).then(data => data.id);
+            },
+            onApprove: (data: any, actions: any) => {
+              return fetch('http://localhost:4000/api/paypal/capture-order', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ orderID: data.orderID })
+              }).then(res => res.json()).then(details => {
+                this.MessageService.add({
+                  severity: 'success',
+                  summary: 'Pago completado',
+                  detail: `Gracias ${details.payer.name.given_name}`
+                });
+                this.router.navigate(['/home/history']);
+              });
+            }
+          }).render('#paypal-button-container');
+        });
+      }
 
+      previousPaymentMethod: string = '';
+      ngDoCheck(): void {
+        if (this.paymentMethod !== this.previousPaymentMethod) {
+          this.previousPaymentMethod = this.paymentMethod;
 
+          if (this.paymentMethod === 'paypal') {
+            setTimeout(() => {
+              this.renderPayPalButton();
+            }, 0);
+          }
+        }
+      }
 
+      onPaymentMethodChange(method: string): void {
+        if (method === 'paypal') {
+          setTimeout(() => {
+            this.renderPayPalButton();
+          }, 0);
+        }
+      }
 
 }

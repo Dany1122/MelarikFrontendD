@@ -88,16 +88,17 @@
         </div>
         <div class="ml_container_delivery">
           <label for=""> Elegir tipo de pago </label>
-          <select name="" id="" [(ngModel)]="paymentMethod">
+          <select name="" id="" [(ngModel)]="paymentMethod" (ngModelChange)="onPaymentMethodChange($event)">
             <option value="">Seleccione una opción</option>
             <option value="credito">Tarjeta de credito</option>
             <option value="debito">Tarjeta de debito</option>
+            <option value="paypal">PayPal</option>
           </select>
         </div>
       </div>
 
       <div
-        *ngIf="deliveryType != '' && shippingOption != '' && selectedAddress != '' && selectedCoupon && paymentMethod != '' "
+        *ngIf="deliveryType !== '' && shippingOption !== '' && selectedAddress !== '' && selectedCoupon && (paymentMethod === 'credito' || paymentMethod === 'debito')"
         class="ml_container_delivery_option ml_main_credit_card">
         <div class="ml_title_delivery">
           <h2>Datos tarjeta de credito</h2>
@@ -132,6 +133,14 @@
         <div class="ml_title_total">
           <p>Total</p>
         </div>
+        <div
+          *ngIf="paymentMethod === 'paypal'"
+          class="ml_container_delivery_option ml_main_paypal">
+          <div class="ml_title_delivery">
+            <h2>Finalizar con PayPal</h2>
+          </div>
+          <div id="paypal-button-container"></div>
+        </div>
         <div class="ml_container_total_price">
           <!-- <p>Subtotal : ${{cartInfo.cart.totalPrice}}</p>
        <p>Envío : ${{shippingOption}}</p>
@@ -143,7 +152,7 @@
           <p>Descuento : ${{ calculateDiscount() | number:'1.2-2' }}</p>
           <p>Total : ${{ calculateTotal() }}</p>
 
-          <div class="ml_button_checkout">
+          <div class="ml_button_checkout" *ngIf="paymentMethod !== 'paypal'">
             <button class="ml_button_checkout" (click)="handlecheckout()">Comprar</button>
           </div>
 

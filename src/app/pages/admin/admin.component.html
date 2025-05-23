@@ -1,0 +1,35 @@
+<h2>Panel de Administración</h2>
+
+<!-- Sección de Usuarios -->
+<h3>Usuarios Registrados</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Email</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{ user.id }}</td>
+    <td>{{ user.name }}</td>
+    <td>{{ user.email }}</td>
+  </tr>
+</table>
+
+<!-- Sección de Productos -->
+<h3>Gestión de Productos</h3>
+
+<!-- Formulario para Agregar Producto -->
+<input type="text" [(ngModel)]="newProduct.nombre" placeholder="Nombre del producto">
+<input type="number" [(ngModel)]="newProduct.precio" placeholder="Precio">
+<input type="number" [(ngModel)]="newProduct.stock" placeholder="Stock">
+<button (click)="addProduct()">Agregar Producto</button>
+
+<!-- Lista de Productos -->
+<table>
+  <tr *ngFor="let producto of productos">
+    <td>{{ producto.nombre }}</td>
+    <td>{{ producto.precio }}</td>
+    <td>{{ producto.stock }}</td>
+    <td><button (click)="deleteProduct(producto.id)">Eliminar</button></td>
+  </tr>
+</table>

@@ -13,6 +13,7 @@ import { TruncatePipe } from '../../pipe/truncate.pipe';
 import { Item } from '../../interfaces/cart.interface';
 import { FormsModule } from '@angular/forms';
 import { AlgoliaService } from '../../services/algolia.service';
+import { LiveChatService } from '../../services/livechat.service'; 
 
 @Component({
   selector: 'app-menu',
@@ -46,7 +47,8 @@ export class MenuComponent implements OnInit {
     private AlgoliaService : AlgoliaService,
     private render : Renderer2,
     private el : ElementRef,
-    private MessageService : MessageService
+    private MessageService : MessageService,
+    private liveChatService: LiveChatService
   ){
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -159,6 +161,7 @@ userPage() {
   window.location.href = '/home/user';
 }
 logOut() {
+  this.liveChatService.clearUserData();
   localStorage.clear();
   window.location.href = '/login';
 }
