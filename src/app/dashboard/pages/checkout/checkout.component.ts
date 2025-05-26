@@ -8,6 +8,7 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { CheckoutService } from '../../../services/checkout.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { environmnet } from '../../../../environments/environment';
 
 declare var paypal: any;
 @Component({
@@ -71,10 +72,10 @@ export class CheckoutComponent implements AfterViewInit {
     }
     loadPayPalScript(): Promise<void> {
       return new Promise((resolve) => {
-        if (document.getElementById('paypal-sdk')) return resolve(); // evita doble carga
+        if (document.getElementById('paypal-sdk')) return resolve(); 
         const script = document.createElement('script');
         script.id = 'paypal-sdk';
-        script.src = 'https://www.paypal.com/sdk/js?client-id=AXhQHDPvBuH7tvRJwyjJGsTfiV0P3lefu31yOpElmPXqH3XjBhgnnATbQ32WXuHx_G64H8-JfT7ECiR3&currency=MXN';
+        script.src = `https://www.paypal.com/sdk/js?client-id=${environmnet.PAYPAL_CLIENT_ID}&currency=MXN`;
         script.onload = () => resolve();
         document.body.appendChild(script);
       });
@@ -203,20 +204,21 @@ export class CheckoutComponent implements AfterViewInit {
         }
       }
       renderPayPalButton(): void {
+        const BASE_URL = environmnet.ENV_URL;
         this.loadPayPalScript().then(() => {
           const container = document.getElementById('paypal-button-container');
           if (container) container.innerHTML = ''; // limpia antes de renderizar
 
           paypal.Buttons({
             createOrder: (data: any, actions: any) => {
-              return fetch('http://localhost:4000/api/paypal/create-order', {
+              return fetch(`${BASE_URL}/api/paypal/create-order`, {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ total: this.calculateTotal() })
               }).then(res => res.json()).then(data => data.id);
             },
             onApprove: (data: any, actions: any) => {
-              return fetch('http://localhost:4000/api/paypal/capture-order', {
+              return fetch(`${BASE_URL}/api/paypal/capture-order`, {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ orderID: data.orderID })
