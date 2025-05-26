@@ -12,43 +12,51 @@ registerLocaleData(localeEs, 'es');
   imports: [
     CommonModule,
   ],
-  providers : [
+  providers: [
     {
       provide: LOCALE_ID,
       useValue: 'es'
     }
   ],
   templateUrl: './history.component.html',
-  styleUrl: './history.component.css',
+  styleUrls: ['./history.component.css'], // 🔁 Usa "styleUrls" con arreglo
 })
 export class HistoryComponent implements OnInit {
 
-  dataHistory : ResponseHistoryInterface = {
-    orders : [],
-    msg : '',
-    success : false
+  dataHistory: ResponseHistoryInterface = {
+    orders: [],
+    msg: '',
+    success: false
   };
 
   constructor(
-    private HistoryService : HistoryService
-  ) { }
+    private HistoryService: HistoryService
+  ) {}
 
   ngOnInit(): void {
-    let token = localStorage.getItem('token');
-
+    const token = localStorage.getItem('token');
     const uid = localStorage.getItem('uid');
 
     const body = {
-      userId : Number(uid)
-    }
+      userId: Number(uid)
+    };
 
     this.getHistory(token!, body);
   }
 
   getHistory(token: string, body: {}) {
-    this.HistoryService.getHistory(token,body).subscribe((data) => {
-      // console.log(data.orders.map((order) => order.order_items.map((item) => item.createdAt)));
-      this.dataHistory = data;
+    this.HistoryService.getHistory(token, body).subscribe((data) => {
+      this.dataHistory = {
+        ...data,
+        orders: data.orders.map(order => ({
+          ...order,
+          showProducts: false // ✅ añadimos propiedad para mostrar productos
+        }))
+      };
     });
+  }
+
+  trackByIndex(index: number, item: any): number {
+    return item?.id ?? index;
   }
 }

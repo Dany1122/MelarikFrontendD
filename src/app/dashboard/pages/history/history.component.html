@@ -1,24 +1,47 @@
 <div class="ml_main_history">
   <div class="ml_title">
-    <h1>Historial de compras</h1>
+    <h1>Historial de Compras</h1>
   </div>
 
   <div class="ml_container_history">
     <div class="ml_cards">
-      @for (item of dataHistory.orders; track $index) {
-        <div class="ml_card">
-          <div class="ml_card_info">
-            <p>Nombre: {{item.full_name}} </p>
-            <p>
-              Dirección: {{item.address}}
-            </p>
-            <p>Pais: Mexico</p>
-            <p>Fecha de compra: {{item.createdAt | date: 'd \'de\' MMMM \'de\' y' }}</p>
-            <p>Estado: {{item.status}}</p>
-            <p>Total: ${{item.total_price}}</p>
+      <div class="ml_card" *ngFor="let item of dataHistory.orders; trackBy: trackByIndex">
+        <div class="ml_card_info">
+          <h2>Pedido #{{ item.id }}</h2>
+          <p><span class="label">Nombre:</span> {{ item.full_name }}</p>
+          <p><span class="label">Dirección:</span> {{ item.address }}</p>
+          <p><span class="label">País:</span> {{ item.country }}</p>
+          <p><span class="label">Fecha de compra:</span> {{ item.createdAt | date: 'd \'de\' MMMM \'de\' y' }}</p>
+          <p><span class="label">Estado:</span> 
+            <span [ngClass]="{ 'estado-exitoso': item.status === 'completado', 'estado-pendiente': item.status !== 'completado' }">
+              {{ item.status }}
+            </span>
+          </p>
+          <p><span class="label">Total:</span> <strong>${{ item.total_price }}</strong></p>
+
+          <button (click)="item.showProducts = !item.showProducts">
+            {{ item.showProducts ? 'Ocultar productos' : 'Ver productos' }}
+          </button>
+
+          <div *ngIf="item.showProducts" class="productos">
+            <h4>Productos comprados</h4>
+            <ul>
+              <li *ngFor="let prod of item.order_items">
+                <div class="producto-item">
+                  <img [src]="prod.producto.url_image" alt="{{prod.producto.name_product}}" />
+                  <div class="producto-detalle">
+                    <p><strong>{{ prod.producto.name_product }}</strong></p>
+                    <p class="descripcion">{{ prod.producto.description }}</p>
+                    <p>Cantidad: {{ prod.quantity }}</p>
+                    <p>Precio: ${{ prod.price }}</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
+
         </div>
-      }
+      </div>
     </div>
   </div>
 </div>

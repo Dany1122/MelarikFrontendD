@@ -1,170 +1,233 @@
 @import '../../../../variables.scss';
 
-@media ( min-width: $mobile ) {
 
-  .ml_main_credit_card{
-    .ml_container_credit-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-
-      .credit-card {
-        width: 300px;
-        height: 180px;
-        border-radius: 10px;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        color: white;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        position: relative;
-        margin-bottom: 20px;
-
-        &__front, &__back {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          height: 100%;
-        }
-
-        &__logo {
-          font-size: 24px;
-          font-weight: bold;
-          text-align: right;
-        }
-
-        &__number {
-          font-size: 18px;
-          letter-spacing: 2px;
-          margin-top: 20px;
-        }
-
-        &__name, &__expiry, &__cvv {
-          font-size: 14px;
-          margin-top: 10px;
-        }
-
-        &__expiry {
-          text-align: right;
-        }
-
-        &__back {
-          background: #333;
-          color: white;
-          padding: 10px;
-          border-radius: 10px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          transform: rotateY(180deg);
-          backface-visibility: hidden;
-        }
-
-        &__cvv {
-          text-align: right;
-        }
-      }
-
-      label {
-        margin-top: 10px;
-        font-weight: bold;
-      }
-
-      input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-    }
-  }
-  .ml_main_checkout{
-    padding: 1em;
+@media (min-width: $mobile) {
+  .ml_main_checkout {
+    padding: 1.5em;
     max-width: $maxWidthContainer;
     margin: 0 auto;
-    .ml_title_checkout{
-      display: flex;
-      justify-content: center;
-      color: $colorText;
-      font-size: 2em;
+    background-color: #fefefe;
+
+    .ml_title_checkout {
+      text-align: center;
+      color: $colorPrimary;
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
-    .ml_container_checkout{
-      .ml_summary_cart{
-        .ml_title_cart{
-          display: flex;
-          justify-content: center;
+
+    .ml_container_checkout {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .ml_summary_cart {
+        background: #fff0fb;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+        .ml_title_cart {
+          text-align: center;
+          font-weight: bold;
+          font-size: 1.2rem;
           color: $colorText;
+          margin-bottom: 1rem;
         }
-        .ml_container_products{
-          border: 1px solid gray;
-          border-radius: 6px;
-          padding: 1em;
-          .ml_container_cart_products{
+
+        .ml_container_products {
+          .ml_container_cart_products {
             display: flex;
-            column-gap: 30px;
-          }
-        }
-      }
-      .ml_delivery_option{
-        .ml_container_delivery_option{
-          padding: 1em;
-          border: 1px solid gray;
-          margin-top: 1em;
-          border-radius: 6px;
-          .ml_title_delivery{
-            display: flex;
-            justify-content: center;
-            color: $colorText;
-          }
-          .ml_container_delivery{
-            select {
-              width: 100%;
-              border: none;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #ccc;
+
+            .oa_container_img img {
               border-radius: 6px;
-              text-align: center;
-              height: 2.5em;
-              color: grey;
-              margin-bottom: 1em;
-              &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
+              box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .info {
+              flex: 1;
+              p {
+                margin: 0.3rem 0;
+              }
+
+              .precio {
+                font-weight: bold;
+                color: #444;
               }
             }
           }
         }
-        .ml_container_total{
-          border: 1px solid gray;
-          padding: 1em;
-          margin-top: 1em;
-          border-radius: 6px ;
-          .ml_title_total{
-            display: flex;
-            justify-content: center;
-            color: $colorText;
-            font-weight: bold;
-            font-size: 1.5em;
+      }
+
+      .ml_delivery_option {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .ml_container_delivery_option {
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          padding: 1rem;
+          background: #fff;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+
+          .ml_title_delivery {
+            text-align: center;
+            color: $colorPrimary;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+          }
+
+          .ml_container_delivery {
+            label {
+              display: block;
+              font-weight: 600;
+              margin-bottom: 0.4rem;
+            }
+
+            select, input {
+              width: 100%;
+              padding: 0.6rem;
+              border-radius: 6px;
+              border: 1px solid #ccc;
+              margin-bottom: 1rem;
+              font-size: 0.95rem;
+            }
+          }
+
+          &.ml_main_credit_card {
+            background: linear-gradient(to bottom right, #fafafa, #fdf2ff);
+
+            .credit-card {
+              margin-bottom: 1rem;
+            }
+          }
+
+          &.ml_main_paypal {
+            background: #f6fafd;
+
+            #paypal-button-container {
+              display: flex;
+              justify-content: center;
+              margin-top: 1rem;
+            }
           }
         }
       }
 
+      .ml_container_total {
+        background: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+
+        .ml_title_total {
+          text-align: center;
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: $colorPrimary;
+          margin-bottom: 1rem;
+        }
+
+        .ml_container_total_price {
+          p {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.4rem 0;
+            font-weight: 500;
+
+            &.total {
+              font-size: 1.3rem;
+              font-weight: bold;
+              color: #222;
+            }
+          }
+
+          .ml_button_checkout {
+            margin-top: 1rem;
+            text-align: center;
+
+            button {
+              background-color: $colorPrimary;
+              color: white;
+              padding: 0.8rem 1.5rem;
+              border: none;
+              border-radius: 8px;
+              font-weight: bold;
+              cursor: pointer;
+              transition: background-color 0.2s;
+
+              &:hover {
+                background-color: darken($colorPrimary, 8%);
+              }
+            }
+          }
+        }
+      }
     }
   }
+  .credit-card {
+  width: 300px;
+  height: 180px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+  &__front {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &__logo {
+    text-align: right;
+    img {
+      max-height: 30px;
+    }
+  }
+
+  &__number {
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-top: 20px;
+  }
+
+  &__name, &__expiry {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  &__expiry {
+    text-align: right;
+  }
 }
-@media ( min-width: $tablet ) {
-  .ml_main_checkout{
-    .ml_container_checkout{
-      .ml_delivery_option{
-        display: flex;
-        flex-wrap: wrap;
-        column-gap: 1em;
-      }
-      .ml_container_delivery_option{
+}
+
+@media (min-width: $tablet) {
+  .ml_main_checkout {
+    .ml_container_checkout {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2rem;
+
+      .ml_summary_cart,
+      .ml_delivery_option {
         width: 48%;
       }
     }
   }
 }
-@media ( min-width: $desktop ) {}
+
+@media (min-width: $desktop) {
+  .ml_main_checkout {
+    .ml_container_checkout {
+      justify-content: space-between;
+    }
+  }
+}

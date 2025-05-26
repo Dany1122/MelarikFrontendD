@@ -9,35 +9,50 @@
     justify-content: center;
   }
   .user-card {
-    width: 300px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
     overflow: hidden;
-    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    font-family: "Segoe UI", sans-serif;
+    transition: transform 0.3s ease;
+  }
+  .user-card:hover {
+    transform: translateY(-3px);
   }
   .user-card__header {
-    background-color: #f5f5f5;
-    padding: 20px;
+    background: linear-gradient(135deg, #e095d4, #ecbce4);
+    color: white;
     text-align: center;
+    padding: 2rem 1rem;
   }
-  .user-card__image {
+  .user-card__header .user-card__image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    border: 3px solid white;
     -o-object-fit: cover;
        object-fit: cover;
+    margin-bottom: 1rem;
+  }
+  .user-card__header .user-card__name {
+    font-size: 1.6rem;
+    margin: 0.5rem 0;
+  }
+  .user-card__header .user-card__email {
+    font-size: 0.9rem;
+    opacity: 0.85;
   }
   .user-card__body {
-    padding: 20px;
+    padding: 1.5rem;
   }
-  .user-card__name {
-    font-size: 24px;
-    margin: 10px 0;
+  .user-card__body .user-info p {
+    margin: 0.5rem 0;
+    color: #333;
+    font-size: 0.95rem;
   }
-  .user-card__email, .user-card__address, .user-card__phone {
-    font-size: 14px;
-    color: #555;
-    margin: 5px 0;
+  .user-card__body .user-info p strong {
+    color: #e095d4;
   }
 }/*# sourceMappingURL=user.component.css.map */

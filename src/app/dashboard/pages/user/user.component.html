@@ -2,21 +2,20 @@
   <div class="ml_main_info">
     <div class="user-card">
       <div class="user-card__header">
-        <img src="https://brandeps.com/icon-download/U/User-icon-vector-21.svg" alt="Foto de perfil" class="user-card__image">
+        <img src="https://brandeps.com/icon-download/U/User-icon-vector-21.svg" alt="Foto de perfil" class="user-card__image" />
+        <h2 class="user-card__name">{{ data.name }}</h2>
+        <p class="user-card__email">{{ data.email }}</p>
       </div>
       <div class="user-card__body">
-        <h2 class="user-card__name">{{ data.name  }}</h2>
-        <p class="user-card__email">{{ data.email }}</p>
-        <p class="user-card__address">{{ data.address }}</p>
-        <p class="user-card__phone">{{ data.phone }}</p>
-        <p class="user-card__phone">{{ data.billingaddress }}</p>
-        <p class="user-card__phone">{{ data.age }}</p>
-        <p class="user-card__phone">{{ data.brands.length == 0 ? '' : data.brands }} </p>
-        <p class="user-card__phone">{{ data.gender== 'female' ? 'Femenino' : 'Masculino' }} </p>
-
+        <div class="user-info">
+          <p><strong>Dirección:</strong> {{ data.address }}</p>
+          <p><strong>Teléfono:</strong> {{ data.phone }}</p>
+          <p><strong>Dirección de Facturación:</strong> {{ data.billingaddress }}</p>
+          <p><strong>Edad:</strong> {{ data.age }}</p>
+          <p *ngIf="data.brands.length"><strong>Marcas favoritas:</strong> {{ data.brands }}</p>
+          <p><strong>Género:</strong> {{ data.gender === 'female' ? 'Femenino' : 'Masculino' }}</p>
+        </div>
       </div>
     </div>
   </div>
-
-
 </div>

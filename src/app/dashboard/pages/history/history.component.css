@@ -1,18 +1,111 @@
 @media (min-width: 0px) {
+  .ml_main_history {
+    padding: 2rem;
+  }
+  .ml_main_history .ml_title {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .ml_main_history .ml_title h1 {
+    font-size: 2rem;
+    color: black;
+    border-bottom: 2px solid #f7e4f4;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
   .ml_main_history .ml_container_history .ml_cards {
     display: flex;
     flex-wrap: wrap;
-    -moz-column-gap: 8%;
-         column-gap: 8%;
-    row-gap: 2em;
-    margin-bottom: 1em;
+    gap: 2rem;
     justify-content: center;
   }
   .ml_main_history .ml_container_history .ml_cards .ml_card {
-    border: 1px solid;
-    padding: 1em;
-    border-radius: 6px;
+    background-color: #fff0fb;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1.5rem;
+    max-width: 400px;
+    width: 100%;
     color: #3026a1;
-    background-color: #ffc3f5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card:hover {
+    transform: translateY(-4px);
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #e095d4;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info p {
+    margin: 0.4rem 0;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info p .label {
+    font-weight: bold;
+    color: #444;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info .estado-exitoso {
+    color: green;
+    font-weight: bold;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info .estado-pendiente {
+    color: orange;
+    font-weight: bold;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info button {
+    margin-top: 1rem;
+    background-color: #e095d4;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info button:hover {
+    background-color: #d46ec4;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info .productos {
+    margin-top: 1rem;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info .productos h4 {
+    color: #444;
+    margin-bottom: 1rem;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info .productos ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info .productos ul li {
+    margin-bottom: 1rem;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info .productos ul li .producto-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info .productos ul li .producto-item img {
+    width: 90px;
+    height: 90px;
+    border-radius: 6px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info .productos ul li .producto-item .producto-detalle {
+    flex: 1;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info .productos ul li .producto-item .producto-detalle p {
+    margin: 0.3rem 0;
+  }
+  .ml_main_history .ml_container_history .ml_cards .ml_card .ml_card_info .productos ul li .producto-item .producto-detalle p.descripcion {
+    font-size: 0.85rem;
+    color: #666;
   }
 }/*# sourceMappingURL=history.component.css.map */

@@ -17,6 +17,7 @@ export interface Order {
   updatedAt:     Date;
   order_items:   OrderItem[];
   totalProducts: number;
+  showProducts?: boolean;
 }
 
 export interface OrderItem {

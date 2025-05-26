@@ -1,143 +1,188 @@
 @media (min-width: 0px) {
-  .ml_main_credit_card .ml_container_credit-card {
+  .ml_main_checkout {
+    padding: 1.5em;
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: #fefefe;
+  }
+  .ml_main_checkout .ml_title_checkout {
+    text-align: center;
+    color: #e095d4;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .ml_main_checkout .ml_container_checkout {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+    gap: 1.5rem;
   }
-  .ml_main_credit_card .ml_container_credit-card .credit-card {
+  .ml_main_checkout .ml_container_checkout .ml_summary_cart {
+    background: #fff0fb;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_title_cart {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #3026a1;
+    margin-bottom: 1rem;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_container_products .ml_container_cart_products {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #ccc;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_container_products .ml_container_cart_products .oa_container_img img {
+    border-radius: 6px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_container_products .ml_container_cart_products .info {
+    flex: 1;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_container_products .ml_container_cart_products .info p {
+    margin: 0.3rem 0;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_container_products .ml_container_cart_products .info .precio {
+    font-weight: bold;
+    color: #444;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_title_delivery {
+    text-align: center;
+    color: #e095d4;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_container_delivery label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_container_delivery select, .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_container_delivery input {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option.ml_main_credit_card {
+    background: linear-gradient(to bottom right, #fafafa, #fdf2ff);
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option.ml_main_credit_card .credit-card {
+    margin-bottom: 1rem;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option.ml_main_paypal {
+    background: #f6fafd;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option.ml_main_paypal #paypal-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_container_total {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_container_total .ml_title_total {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e095d4;
+    margin-bottom: 1rem;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_container_total .ml_container_total_price p {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.4rem 0;
+    font-weight: 500;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_container_total .ml_container_total_price p.total {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #222;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_container_total .ml_container_total_price .ml_button_checkout {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_container_total .ml_container_total_price .ml_button_checkout button {
+    background-color: #e095d4;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .ml_main_checkout .ml_container_checkout .ml_container_total .ml_container_total_price .ml_button_checkout button:hover {
+    background-color: #d775c7;
+  }
+  .credit-card {
     width: 300px;
     height: 180px;
     border-radius: 10px;
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
-    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
-  .ml_main_credit_card .ml_container_credit-card .credit-card__front, .ml_main_credit_card .ml_container_credit-card .credit-card__back {
+  .credit-card__front {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
   }
-  .ml_main_credit_card .ml_container_credit-card .credit-card__logo {
-    font-size: 24px;
-    font-weight: bold;
+  .credit-card__logo {
     text-align: right;
   }
-  .ml_main_credit_card .ml_container_credit-card .credit-card__number {
+  .credit-card__logo img {
+    max-height: 30px;
+  }
+  .credit-card__number {
     font-size: 18px;
     letter-spacing: 2px;
     margin-top: 20px;
   }
-  .ml_main_credit_card .ml_container_credit-card .credit-card__name, .ml_main_credit_card .ml_container_credit-card .credit-card__expiry, .ml_main_credit_card .ml_container_credit-card .credit-card__cvv {
+  .credit-card__name, .credit-card__expiry {
     font-size: 14px;
     margin-top: 10px;
   }
-  .ml_main_credit_card .ml_container_credit-card .credit-card__expiry {
+  .credit-card__expiry {
     text-align: right;
-  }
-  .ml_main_credit_card .ml_container_credit-card .credit-card__back {
-    background: #333;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-  }
-  .ml_main_credit_card .ml_container_credit-card .credit-card__cvv {
-    text-align: right;
-  }
-  .ml_main_credit_card .ml_container_credit-card label {
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  .ml_main_credit_card .ml_container_credit-card input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  .ml_main_checkout {
-    padding: 1em;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-  .ml_main_checkout .ml_title_checkout {
-    display: flex;
-    justify-content: center;
-    color: #3026a1;
-    font-size: 2em;
-  }
-  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_title_cart {
-    display: flex;
-    justify-content: center;
-    color: #3026a1;
-  }
-  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_container_products {
-    border: 1px solid gray;
-    border-radius: 6px;
-    padding: 1em;
-  }
-  .ml_main_checkout .ml_container_checkout .ml_summary_cart .ml_container_products .ml_container_cart_products {
-    display: flex;
-    -moz-column-gap: 30px;
-         column-gap: 30px;
-  }
-  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option {
-    padding: 1em;
-    border: 1px solid gray;
-    margin-top: 1em;
-    border-radius: 6px;
-  }
-  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_title_delivery {
-    display: flex;
-    justify-content: center;
-    color: #3026a1;
-  }
-  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_container_delivery select {
-    width: 100%;
-    border: none;
-    border-radius: 6px;
-    text-align: center;
-    height: 2.5em;
-    color: grey;
-    margin-bottom: 1em;
-  }
-  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_container_delivery select::-webkit-outer-spin-button, .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_delivery_option .ml_container_delivery select::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_total {
-    border: 1px solid gray;
-    padding: 1em;
-    margin-top: 1em;
-    border-radius: 6px;
-  }
-  .ml_main_checkout .ml_container_checkout .ml_delivery_option .ml_container_total .ml_title_total {
-    display: flex;
-    justify-content: center;
-    color: #3026a1;
-    font-weight: bold;
-    font-size: 1.5em;
   }
 }
 @media (min-width: 768px) {
-  .ml_main_checkout .ml_container_checkout .ml_delivery_option {
-    display: flex;
+  .ml_main_checkout .ml_container_checkout {
+    flex-direction: row;
     flex-wrap: wrap;
-    -moz-column-gap: 1em;
-         column-gap: 1em;
+    gap: 2rem;
   }
-  .ml_main_checkout .ml_container_checkout .ml_container_delivery_option {
+  .ml_main_checkout .ml_container_checkout .ml_summary_cart,
+  .ml_main_checkout .ml_container_checkout .ml_delivery_option {
     width: 48%;
+  }
+}
+@media (min-width: 1024px) {
+  .ml_main_checkout .ml_container_checkout {
+    justify-content: space-between;
   }
 }/*# sourceMappingURL=checkout.component.css.map */

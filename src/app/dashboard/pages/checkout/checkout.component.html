@@ -106,14 +106,18 @@
         <div class="ml_container_credit-card">
           <div class="credit-card">
             <div class="credit-card__front">
-              <div class="credit-card__logo">VISA</div>
-              <div class="credit-card__number">{{ numberCard | mask: '0000 0000 0000 0000' || '#### #### #### ####' }}
+              <div class="credit-card__logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" width="50">
               </div>
-              <div class="credit-card__name">{{ nameCard || 'Nombre del titular' }}</div>
-              <div class="credit-card__expiry">{{ expirationDate | mask: '00/00' || 'MM/YY' }}</div>
-            </div>
-            <div class="credit-card__back">
-              <div class="credit-card__cvv">{{ cvv || 'CVV' }}</div>
+              <div class="credit-card__number">
+                {{ numberCard || '#### #### #### ####' }}
+              </div>
+              <div class="credit-card__name">
+                {{ nameCard || 'Nombre del titular' }}
+              </div>
+              <div class="credit-card__expiry">
+                {{ expirationDate || 'MM/YY' }}
+              </div>
             </div>
           </div>
           <label for=""> Nombre del titular </label>
