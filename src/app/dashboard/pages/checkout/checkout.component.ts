@@ -226,6 +226,42 @@ export class CheckoutComponent implements AfterViewInit {
                   summary: 'Pago completado',
                   detail: `Gracias ${details.payer.name.given_name}`
                 });
+                const token = localStorage.getItem('token');
+                const bodyGetPersonalInfo = {
+                  userId: localStorage.getItem('uid')
+                };
+
+                this.InfoPersonalByUserService.getInfoPersonalByUser( token!, bodyGetPersonalInfo ).subscribe((data) => {
+
+                  const body = {
+                    userId:           Number(localStorage.getItem('uid')),
+                    full_name:        data.user.name + ' ' + data.user.lastname,
+                    address:          this.selectedAddress,
+                    country:          'México',
+                    phone_number:     data.user.phone,
+                    deliveryType:     this.deliveryType,
+                    coupon:           this.selectedCoupon,
+                    paymentMethod:    this.paymentMethod,
+                    nameOnCard:       this.nameCard,
+                    creditCardNumber: this.numberCard,
+                    creditCardExpiry: this.expirationDate,
+                    creditCardCVV:    this.cvv,
+                    deliveryOption:   this.shippingOption
+                  };
+                  console.log('body', body);
+                  this.CheckoutService.createOrder(token!, body).subscribe((data) => {
+
+                    if ( data.success ) {
+                      this.MessageService.add({severity:'success', summary:'Success', detail:data.msg});
+                      window.location.href = '/home/history';
+
+                    } else {
+                      this.MessageService.add({severity:'error', summary:'Error', detail:data.msg});
+                    }
+                  });
+
+                });
+                console.log('Checkout');
                 this.router.navigate(['/home/history']);
               });
             }
